@@ -1,13 +1,17 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:idea_form/services/ideaServices.dart';
 import 'dart:developer';
 // import 'package:flutter_gen/gen_l10n/app_localization.dart';
 // import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:idea_form/widget/button.dart';
+import 'package:idea_form/widget/filePicker.dart';
 import 'package:idea_form/widget/textField.dart';
+import 'package:idea_form/widget/toast.dart';
 import 'package:idea_form/widget/widgetfunction.dart';
 // import 'package:open_file/open_file.dart';
 
@@ -15,6 +19,8 @@ import 'package:idea_form/widget/widgetfunction.dart';
 // import '../../../controller/authController.dart';
 // import '../../../widgets/widgetFunctiion.dart';
 import 'constant/ui_constant.dart';
+import 'services/firebaseStorage.dart';
+import 'widget/show_loading.dart';
 
 class CreateBusinessIdeaScreen extends StatefulWidget {
   const CreateBusinessIdeaScreen({Key? key}) : super(key: key);
@@ -30,6 +36,10 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
 
   List<File> filesList = [];
   List<Map<String, dynamic>> filesByteList = [];
+  List<Map<String, dynamic>> companyCertByteList = [];
+  List<Map<String, dynamic>> dPITCertByteList = [];
+  List<Map<String, dynamic>> companyPanByteList = [];
+  List<Map<String, dynamic>> companyTanByteList = [];
   String? ideaType;
   int ideaTypeMarks = 0;
   String? techno;
@@ -267,56 +277,113 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
   //   });
   // }
 
-  // void submitIdea() {
-  //   Map<String, dynamic> businessIdea = {
-  //     "userId": auth.currentUser!.uid,
-  //     "createdAt": Timestamp.now(),
-  //     "ideaType": ideaType,
-  //     "isTechnology": {
-  //       "techUsed": techno,
-  //       "techForm": form,
-  //       "somethingElse": somethingCtrl.text.isEmpty ? null : somethingCtrl.text
-  //     },
-  //     "isSolution": isSolution,
-  //     "isCustomer": isCustomer,
-  //     "industry": industry,
-  //     "isRevenue": isRevenue,
-  //     "legalStatus": legalStatus,
-  //     "yearOfCorporation": yearOfCorporationCTRL.text,
-  //     "ideaName": business_nameCTRL.text,
-  //     "productDescription": productCTRL.text,
-  //     "uniqueSellingPoint": productUniqueCTRL.text,
-  //     "differentService": differentServiceCTRL.map((e) => e.text).toList(),
-  //     "milestone": milestoneCTRL.text,
-  //     "reaction": reaction,
-  //     "ageGroup": {"from": fromCtrl.text, "to": toCtrl.text},
-  //     "incomeGroup": {"from": fromIncomeCtrl.text, "to": toIncomeCtrl.text},
-  //     "location": location,
-  //     "gender": gender,
-  //     "education": education,
-  //     "teamSize": teamSizeCTRL.text,
-  //     "isExpertAdvice": isExpertAdvice,
-  //     "isSpace": isSpace,
-  //     "isFunding": isFunding,
-  //     "isFormCompany": isFormCompany,
-  //     "isGrow": isGrow,
-  //     "myName": nameCtrl.text,
-  //     "myEmail": emailCtrl.text,
-  //     "myMobile": mobileCtrl.text,
-  //     "myDesignation": designationCtrl.text,
-  //     "coFounder": coFounderCTRL.map((e) => e.text).toList(),
-  //     "companyCtrl": companyCtrl.text
-  //   };
-  //   ideaController.myMap.addAll(businessIdea);
-  //   log(businessIdea.toString());
-  //   log("mobile number  " + businessIdea["myMobile"].toString());
-  //   log("my name  " + businessIdea["myName"].toString());
-  //   log("year of corporation  " + businessIdea["yearOfCorporation"].toString());
-  //   log("my email  " + businessIdea["myEmail"].toString());
-  //   log("my Company name  " + businessIdea["companyCtrl"].toString());
-  //   // ideaController.createBusinessIdea(businessIdeaDetail,
-  //   //     files: filesList, bytesList: filesByteList, marks: calculateMarks());
-  // }
+  void submitIdea() async {
+    Map<String, dynamic> businessIdea = {
+      // "userId": auth.currentUser!.uid,
+      "createdAt": Timestamp.now(),
+      "ideaType": ideaType,
+      "isTechnology": {
+        "techUsed": techno,
+        "techForm": form,
+        "somethingElse": somethingCtrl.text.isEmpty ? null : somethingCtrl.text
+      },
+      "isSolution": isSolution,
+      "isCustomer": isCustomer,
+      "industry": industry,
+      "isRevenue": isRevenue,
+      "legalStatus": legalStatus,
+      "yearOfCorporation": yearOfCorporationCTRL.text,
+      "ideaName": business_nameCTRL.text,
+      "productDescription": productCTRL.text,
+      "uniqueSellingPoint": productUniqueCTRL.text,
+      "differentService": differentServiceCTRL.map((e) => e.text).toList(),
+      "milestone": milestoneCTRL.text,
+      "reaction": reaction,
+      "ageGroup": {"from": fromCtrl.text, "to": toCtrl.text},
+      "incomeGroup": {"from": fromIncomeCtrl.text, "to": toIncomeCtrl.text},
+      "location": location,
+      "gender": gender,
+      "education": education,
+      "teamSize": teamSizeCTRL.text,
+      "isExpertAdvice": isExpertAdvice,
+      "isSpace": isSpace,
+      "isFunding": isFunding,
+      "isFormCompany": isFormCompany,
+      "isGrow": isGrow,
+      "myName": nameCtrl.text,
+      "myEmail": emailCtrl.text,
+      "myMobile": mobileCtrl.text,
+      "myDesignation": designationCtrl.text,
+      "coFounder": coFounderCTRL.map((e) => e.text).toList(),
+      "companyCtrl": companyCtrl.text
+    };
+    // ideaController.myMap.addAll(businessIdea);
+
+    if (filesByteList.isNotEmpty) {
+      showLoading("Uploading Files..");
+      String? urls = await FirebaseStorageService.uploadFile("businessIdea", "",
+          byteData: filesByteList.first["fileByte"]);
+      if (urls != null) {
+        dismissLoadingWidget();
+        businessIdea["attachment"] = urls;
+      }
+    }
+    if (companyCertByteList.isNotEmpty) {
+      showLoading("Uploading Files..");
+      List? urls = await FirebaseStorageService.uploadMultiFile("businessIdea",
+          byteList: companyCertByteList);
+      if (urls != null) {
+        dismissLoadingWidget();
+        businessIdea["companyCert"] = urls;
+      }
+    }
+    if (dPITCertByteList.isNotEmpty) {
+      showLoading("Uploading Files..");
+      List? urls = await FirebaseStorageService.uploadMultiFile("businessIdea",
+          byteList: dPITCertByteList);
+      if (urls != null) {
+        dismissLoadingWidget();
+        businessIdea["dPITCert"] = urls;
+      }
+    }
+    if (companyPanByteList.isNotEmpty) {
+      showLoading("Uploading Files..");
+      List? urls = await FirebaseStorageService.uploadMultiFile("businessIdea",
+          byteList: companyPanByteList);
+      if (urls != null) {
+        dismissLoadingWidget();
+        businessIdea["companyPan"] = urls;
+      }
+    }
+    if (companyTanByteList.isNotEmpty) {
+      showLoading("Uploading Files..");
+      List? urls = await FirebaseStorageService.uploadMultiFile("businessIdea",
+          byteList: companyTanByteList);
+      if (urls != null) {
+        dismissLoadingWidget();
+        businessIdea["companyTan"] = urls;
+      }
+    }
+    print(businessIdea.toString());
+    IdeaServices().createBusinessIdea(businessIdea).then((value) => {
+          if (value != null)
+            {
+              showToastMessage("Idea Submitted Successfully"),
+              setState(() {
+                index = 0;
+              })
+            }
+          else
+            {showToastMessage("Something went wrong")}
+        });
+    // log("mobile number  " + businessIdea["myMobile"].toString());
+    // log("my name  " + businessIdea["myName"].toString());
+    // log("year of corporation  " + businessIdea["yearOfCorporation"].toString());
+    // log("my email  " + businessIdea["myEmail"].toString());
+    // log("my Company name  " + businessIdea["companyCtrl"].toString());
+    // ideaController.createBusinessIdea(businessIdeaDetail,
+    //     files: filesList, bytesList: filesByteList, marks: calculateMarks());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -397,7 +464,7 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
                             text: "Submit",
                             onTap: () {
                               // if (validateThird()) {
-                              // submitIdea();
+                              submitIdea();
                               // }
                             },
                           )
@@ -1839,15 +1906,17 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
                     OutLinedButtonWidget(
                         text: "choose file",
                         onTap: () {
-                          // if (kIsWeb) {
-                          //   FilePickerService.pickFileWeb().then((value) {
-                          //     if (value != null) {
-                          //       setState(() {
-                          //         filesByteList.addAll(value);
-                          //       });
-                          //     }
-                          //   });
-                          // } else {
+                          if (kIsWeb) {
+                            FilePickerService.pickFileWeb(isMultiple: true)
+                                .then((value) {
+                              if (value != null) {
+                                setState(() {
+                                  filesByteList.addAll(value);
+                                });
+                              }
+                            });
+                          }
+                          //else {
                           //   FilePickerService.pickFile().then((value) {
                           //     if (value != null) {
                           //       setState(() {
@@ -1909,7 +1978,7 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      e["name"],
+                                      e["fileName"] ?? "temp",
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(color: AppColors.teal),
                                     ),
@@ -2326,15 +2395,16 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
                         width: width * .15,
                         text: "Company Certificate",
                         onTap: () {
-                          // if (kIsWeb) {
-                          //   FilePickerService.pickFileWeb().then((value) {
-                          //     if (value != null) {
-                          //       setState(() {
-                          //         filesByteList.addAll(value);
-                          //       });
-                          //     }
-                          //   });
-                          // } else {
+                          if (kIsWeb) {
+                            FilePickerService.pickFileWeb().then((value) {
+                              if (value != null) {
+                                setState(() {
+                                  companyCertByteList.addAll(value);
+                                });
+                              }
+                            });
+                          }
+                          //else {
                           //   FilePickerService.pickFile().then((value) {
                           //     if (value != null) {
                           //       setState(() {
@@ -2356,44 +2426,61 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
                     SizedBox(
                       width: 20,
                     ),
-                    // filesList.isEmpty
-                    //     ? SizedBox()
-                    //     : Container(
-                    //         child: Text("${filesList.length} filesList Selected"),
-                    //       ),
-                    // SizedBox(
-                    //   width: 20,
-                    // ),
-                    // if (!filesList.isEmpty)
-                    //   GestureDetector(
-                    //     onTap: () {
-                    //       setState(() {
-                    //         filesList.length = filesList.length - 1;
-                    //       });
-                    //     },
-                    //     child: Icon(
-                    //       Icons.remove_circle,
-                    //       color: AppColors.teal,
-                    //     ),
-                    //   )
                   ],
                 ),
+                Wrap(children: [
+                  if (kIsWeb)
+                    ...companyCertByteList.map((e) => UnconstrainedBox(
+                          child: Container(
+                            width: 150,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: AppColors.teal),
+                                borderRadius: BorderRadius.circular(5)),
+                            margin: EdgeInsets.all(15),
+                            padding: EdgeInsets.all(5),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    e["fileName"] ?? "temp",
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(color: AppColors.teal),
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      companyCertByteList.remove(e);
+                                    });
+                                  },
+                                  child: Icon(
+                                    Icons.remove_circle,
+                                    color: AppColors.teal,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        )),
+                ]),
                 SizedBox(height: 10),
+
                 Row(
                   children: [
                     OutLinedButtonWidget(
                         width: width * .15,
                         text: "DPIIT Certificate",
                         onTap: () {
-                          // if (kIsWeb) {
-                          //   FilePickerService.pickFileWeb().then((value) {
-                          //     if (value != null) {
-                          //       setState(() {
-                          //         filesByteList.addAll(value);
-                          //       });
-                          //     }
-                          //   });
-                          // } else {
+                          if (kIsWeb) {
+                            FilePickerService.pickFileWeb().then((value) {
+                              if (value != null) {
+                                setState(() {
+                                  dPITCertByteList.addAll(value);
+                                });
+                              }
+                            });
+                          }
+                          //else {
                           //   FilePickerService.pickFile().then((value) {
                           //     if (value != null) {
                           //       setState(() {
@@ -2415,28 +2502,43 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
                     SizedBox(
                       width: 20,
                     ),
-                    // filesList.isEmpty
-                    //     ? SizedBox()
-                    //     : Container(
-                    //         child: Text("${filesList.length} filesList Selected"),
-                    //       ),
-                    // SizedBox(
-                    //   width: 20,
-                    // ),
-                    // if (!filesList.isEmpty)
-                    //   GestureDetector(
-                    //     onTap: () {
-                    //       setState(() {
-                    //         filesList.length = filesList.length - 1;
-                    //       });
-                    //     },
-                    //     child: Icon(
-                    //       Icons.remove_circle,
-                    //       color: AppColors.teal,
-                    //     ),
-                    //   )
                   ],
                 ),
+                Wrap(children: [
+                  if (kIsWeb)
+                    ...dPITCertByteList.map((e) => UnconstrainedBox(
+                          child: Container(
+                            width: 150,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: AppColors.teal),
+                                borderRadius: BorderRadius.circular(5)),
+                            margin: EdgeInsets.all(15),
+                            padding: EdgeInsets.all(5),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    e["fileName"] ?? "temp",
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(color: AppColors.teal),
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      dPITCertByteList.remove(e);
+                                    });
+                                  },
+                                  child: Icon(
+                                    Icons.remove_circle,
+                                    color: AppColors.teal,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        )),
+                ]),
                 SizedBox(height: 10),
                 Row(
                   children: [
@@ -2444,15 +2546,16 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
                         width: width * .15,
                         text: "Company PAN",
                         onTap: () {
-                          // if (kIsWeb) {
-                          //   FilePickerService.pickFileWeb().then((value) {
-                          //     if (value != null) {
-                          //       setState(() {
-                          //         filesByteList.addAll(value);
-                          //       });
-                          //     }
-                          //   });
-                          // } else {
+                          if (kIsWeb) {
+                            FilePickerService.pickFileWeb().then((value) {
+                              if (value != null) {
+                                setState(() {
+                                  companyPanByteList.addAll(value);
+                                });
+                              }
+                            });
+                          }
+                          //else {
                           //   FilePickerService.pickFile().then((value) {
                           //     if (value != null) {
                           //       setState(() {
@@ -2461,41 +2564,47 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
                           //     }
                           //   });
                           // }
-                          //  await FilePicker.platform.pickFiles().then((result) {
-                          //   if (result != null) {
-                          //     filesList.add(File(result.files.single.path));
-                          //     setState(() {});
-                          //   } else {
-                          //     // User canceled the picker
-                          //   }
-                          //   return result;
-                          // });
                         }),
                     SizedBox(
                       width: 20,
                     ),
-                    // filesList.isEmpty
-                    //     ? SizedBox()
-                    //     : Container(
-                    //         child: Text("${filesList.length} filesList Selected"),
-                    //       ),
-                    // SizedBox(
-                    //   width: 20,
-                    // ),
-                    // if (!filesList.isEmpty)
-                    //   GestureDetector(
-                    //     onTap: () {
-                    //       setState(() {
-                    //         filesList.length = filesList.length - 1;
-                    //       });
-                    //     },
-                    //     child: Icon(
-                    //       Icons.remove_circle,
-                    //       color: AppColors.teal,
-                    //     ),
-                    //   )
                   ],
                 ),
+                Wrap(children: [
+                  if (kIsWeb)
+                    ...companyPanByteList.map((e) => UnconstrainedBox(
+                          child: Container(
+                            width: 150,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: AppColors.teal),
+                                borderRadius: BorderRadius.circular(5)),
+                            margin: EdgeInsets.all(15),
+                            padding: EdgeInsets.all(5),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    e["fileName"] ?? "temp",
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(color: AppColors.teal),
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      companyPanByteList.remove(e);
+                                    });
+                                  },
+                                  child: Icon(
+                                    Icons.remove_circle,
+                                    color: AppColors.teal,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        )),
+                ]),
                 SizedBox(height: 10),
                 Row(
                   children: [
@@ -2503,61 +2612,59 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
                         width: width * .15,
                         text: "Company TAN",
                         onTap: () {
-                          // if (kIsWeb) {
-                          //   FilePickerService.pickFileWeb().then((value) {
-                          //     if (value != null) {
-                          //       setState(() {
-                          //         filesByteList.addAll(value);
-                          //       });
-                          //     }
-                          //   });
-                          // } else {
-                          //   FilePickerService.pickFile().then((value) {
-                          //     if (value != null) {
-                          //       setState(() {
-                          //         filesList.addAll(value);
-                          //       });
-                          //     }
-                          //   });
-                          // }
-                          //  await FilePicker.platform.pickFiles().then((result) {
-                          //   if (result != null) {
-                          //     filesList.add(File(result.files.single.path));
-                          //     setState(() {});
-                          //   } else {
-                          //     // User canceled the picker
-                          //   }
-                          //   return result;
-                          // });
+                          if (kIsWeb) {
+                            FilePickerService.pickFileWeb().then((value) {
+                              if (value != null) {
+                                setState(() {
+                                  companyTanByteList.addAll(value);
+                                });
+                              }
+                            });
+                          }
                         }),
                     SizedBox(
                       width: 20,
                     ),
-                    // filesList.isEmpty
-                    //     ? SizedBox()
-                    //     : Container(
-                    //         child: Text("${filesList.length} filesList Selected"),
-                    //       ),
-                    // SizedBox(
-                    //   width: 20,
-                    // ),
-                    // if (!filesList.isEmpty)
-                    //   GestureDetector(
-                    //     onTap: () {
-                    //       setState(() {
-                    //         filesList.length = filesList.length - 1;
-                    //       });
-                    //     },
-                    //     child: Icon(
-                    //       Icons.remove_circle,
-                    //       color: AppColors.teal,
-                    //     ),
-                    //   )
                   ],
                 ),
                 SizedBox(
                   height: 20,
                 ),
+                Wrap(children: [
+                  if (kIsWeb)
+                    ...companyTanByteList.map((e) => UnconstrainedBox(
+                          child: Container(
+                            width: 150,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: AppColors.teal),
+                                borderRadius: BorderRadius.circular(5)),
+                            margin: EdgeInsets.all(15),
+                            padding: EdgeInsets.all(5),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    e["fileName"] ?? "temp",
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(color: AppColors.teal),
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      companyTanByteList.remove(e);
+                                    });
+                                  },
+                                  child: Icon(
+                                    Icons.remove_circle,
+                                    color: AppColors.teal,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        )),
+                ]),
                 //       ]),
                 // ]),
               ],

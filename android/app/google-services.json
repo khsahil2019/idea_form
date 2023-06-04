@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "214108766564",
+    "project_id": "busiess-idea",
+    "storage_bucket": "busiess-idea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:214108766564:android:5fd49cc1d1d8f8e7293a71",
+        "android_client_info": {
+          "package_name": "com.example.idea_form"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "214108766564-r2oj92es89ckulh57uf841a417kab8he.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_hFSsPUKVFZUvTQcfD8jj7qA7DyhLBbo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "214108766564-r2oj92es89ckulh57uf841a417kab8he.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
