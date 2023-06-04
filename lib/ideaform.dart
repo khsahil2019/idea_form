@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:idea_form/services/ideaServices.dart';
 import 'dart:developer';
-// import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 // import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:idea_form/widget/button.dart';
 import 'package:idea_form/widget/filePicker.dart';
@@ -117,67 +117,67 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
     super.initState();
     // getRawDataFromDatabase();
     Future.delayed(const Duration(milliseconds: 100), () {
-      // ideaTypeList
-      //     .add(AppLocalizations.of(context)!.idea_desk_concept_in_my_mind);
-      // ideaTypeList.add(AppLocalizations.of(context)!.idea_desk_early_stage);
-      // ideaTypeList.add(AppLocalizations.of(context)!.idea_desk_growing_user);
-      // ideaTypeList.add(AppLocalizations.of(context)!.idea_desk_mature_i_want);
-      // industryList.add(AppLocalizations.of(context)!.idea_desk_energy);
-      // industryList.add(AppLocalizations.of(context)!.idea_desk_clean_tech);
-      // industryList.add(AppLocalizations.of(context)!.idea_desk_healthcare);
-      // industryList
-      //     .add(AppLocalizations.of(context)!.idea_desk_software_as_service);
-      // industryList.add(AppLocalizations.of(context)!.idea_desk_education);
-      // industryList.add(AppLocalizations.of(context)!.idea_desk_transportation);
-      // industryList.add(AppLocalizations.of(context)!.idea_desk_customer_goods);
-      // industryList.add(AppLocalizations.of(context)!.idea_desk_fintech);
-      // industryList.add(AppLocalizations.of(context)!.idea_desk_others);
-      // legalStatusList.add(AppLocalizations.of(context)!.idea_desk_incorpo);
-      // legalStatusList.add(AppLocalizations.of(context)!.idea_desk_not_incorpo);
-      // technoList.add(AppLocalizations.of(context)!.technolist1);
-      // technoList.add(AppLocalizations.of(context)!.technolist2);
-      // technoList.add(AppLocalizations.of(context)!.technolist3);
-      // technoList.add(AppLocalizations.of(context)!.technolist4);
-      // formList.add(AppLocalizations.of(context)!.formList1);
-      // formList.add(AppLocalizations.of(context)!.formList2);
-      // formList.add(AppLocalizations.of(context)!.formList3);
-      // formList.add(AppLocalizations.of(context)!.formList4);
-      // formList.add(AppLocalizations.of(context)!.formList5);
-      // formList.add(AppLocalizations.of(context)!.formList6);
-      // formList.add(AppLocalizations.of(context)!.formList7);
-      // formList.add(AppLocalizations.of(context)!.formList8);
-      // formList.add(AppLocalizations.of(context)!.formList9);
-      // formList.add(AppLocalizations.of(context)!.formList10);
-      // formList.add(AppLocalizations.of(context)!.formList11);
-      // formList.add(AppLocalizations.of(context)!.formList12);
+      ideaTypeList
+          .add(AppLocalizations.of(context)!.idea_desk_concept_in_my_mind);
+      ideaTypeList.add(AppLocalizations.of(context)!.idea_desk_early_stage);
+      ideaTypeList.add(AppLocalizations.of(context)!.idea_desk_growing_user);
+      ideaTypeList.add(AppLocalizations.of(context)!.idea_desk_mature_i_want);
+      industryList.add(AppLocalizations.of(context)!.idea_desk_energy);
+      industryList.add(AppLocalizations.of(context)!.idea_desk_clean_tech);
+      industryList.add(AppLocalizations.of(context)!.idea_desk_healthcare);
+      industryList
+          .add(AppLocalizations.of(context)!.idea_desk_software_as_service);
+      industryList.add(AppLocalizations.of(context)!.idea_desk_education);
+      industryList.add(AppLocalizations.of(context)!.idea_desk_transportation);
+      industryList.add(AppLocalizations.of(context)!.idea_desk_customer_goods);
+      industryList.add(AppLocalizations.of(context)!.idea_desk_fintech);
+      industryList.add(AppLocalizations.of(context)!.idea_desk_others);
+      legalStatusList.add(AppLocalizations.of(context)!.idea_desk_incorpo);
+      legalStatusList.add(AppLocalizations.of(context)!.idea_desk_not_incorpo);
+      technoList.add(AppLocalizations.of(context)!.technolist1);
+      technoList.add(AppLocalizations.of(context)!.technolist2);
+      technoList.add(AppLocalizations.of(context)!.technolist3);
+      technoList.add(AppLocalizations.of(context)!.technolist4);
+      formList.add(AppLocalizations.of(context)!.formList1);
+      formList.add(AppLocalizations.of(context)!.formList2);
+      formList.add(AppLocalizations.of(context)!.formList3);
+      formList.add(AppLocalizations.of(context)!.formList4);
+      formList.add(AppLocalizations.of(context)!.formList5);
+      formList.add(AppLocalizations.of(context)!.formList6);
+      formList.add(AppLocalizations.of(context)!.formList7);
+      formList.add(AppLocalizations.of(context)!.formList8);
+      formList.add(AppLocalizations.of(context)!.formList9);
+      formList.add(AppLocalizations.of(context)!.formList10);
+      formList.add(AppLocalizations.of(context)!.formList11);
+      formList.add(AppLocalizations.of(context)!.formList12);
 
-      // reactionList.add(AppLocalizations.of(context)!.rlist1);
-      // reactionList.add(AppLocalizations.of(context)!.rlist2);
-      // reactionList.add(AppLocalizations.of(context)!.rlist3);
-      // reactionList.add(AppLocalizations.of(context)!.rlist4);
+      reactionList.add(AppLocalizations.of(context)!.rlist1);
+      reactionList.add(AppLocalizations.of(context)!.rlist2);
+      reactionList.add(AppLocalizations.of(context)!.rlist3);
+      reactionList.add(AppLocalizations.of(context)!.rlist4);
 
-      // ventureList.add(AppLocalizations.of(context)!.y);
-      // ventureList.add(AppLocalizations.of(context)!.n);
+      ventureList.add(AppLocalizations.of(context)!.y);
+      ventureList.add(AppLocalizations.of(context)!.n);
 
-      // locationList.add(AppLocalizations.of(context)!.local);
-      // locationList.add(AppLocalizations.of(context)!.few);
-      // locationList.add(AppLocalizations.of(context)!.state);
-      // locationList.add(AppLocalizations.of(context)!.whole);
-      // locationList.add(AppLocalizations.of(context)!.global);
+      locationList.add(AppLocalizations.of(context)!.local);
+      locationList.add(AppLocalizations.of(context)!.few);
+      locationList.add(AppLocalizations.of(context)!.state);
+      locationList.add(AppLocalizations.of(context)!.whole);
+      locationList.add(AppLocalizations.of(context)!.global);
 
-      // genderList.add(AppLocalizations.of(context)!.m);
-      // genderList.add(AppLocalizations.of(context)!.f);
-      // genderList.add(AppLocalizations.of(context)!.oth);
-      // genderList.add(AppLocalizations.of(context)!.all);
+      genderList.add(AppLocalizations.of(context)!.m);
+      genderList.add(AppLocalizations.of(context)!.f);
+      genderList.add(AppLocalizations.of(context)!.oth);
+      genderList.add(AppLocalizations.of(context)!.all);
 
-      // educationList.add(AppLocalizations.of(context)!.noreq);
-      // educationList.add(AppLocalizations.of(context)!.clss5);
-      // educationList.add(AppLocalizations.of(context)!.clss10);
-      // educationList.add(AppLocalizations.of(context)!.clss12);
+      educationList.add(AppLocalizations.of(context)!.noreq);
+      educationList.add(AppLocalizations.of(context)!.clss5);
+      educationList.add(AppLocalizations.of(context)!.clss10);
+      educationList.add(AppLocalizations.of(context)!.clss12);
 
-      // educationList.add(AppLocalizations.of(context)!.gradu);
-      // educationList.add(AppLocalizations.of(context)!.postgradu);
-      // educationList.add(AppLocalizations.of(context)!.phd);
+      educationList.add(AppLocalizations.of(context)!.gradu);
+      educationList.add(AppLocalizations.of(context)!.postgradu);
+      educationList.add(AppLocalizations.of(context)!.phd);
 
       differentService.add(Row(
         children: [
@@ -365,16 +365,21 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
       }
     }
     print(businessIdea.toString());
+    showLoading("Uploading Idea..");
     IdeaServices().createBusinessIdea(businessIdea).then((value) => {
           if (value != null)
             {
+              dismissLoadingWidget(),
               showToastMessage("Idea Submitted Successfully"),
               setState(() {
                 index = 0;
               })
             }
           else
-            {showToastMessage("Something went wrong")}
+            {
+              showLoading("Uploading Files.."),
+              showToastMessage("Something went wrong")
+            }
         });
     // log("mobile number  " + businessIdea["myMobile"].toString());
     // log("my name  " + businessIdea["myName"].toString());
