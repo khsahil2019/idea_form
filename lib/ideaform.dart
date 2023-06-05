@@ -54,7 +54,7 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
   String? education;
   int educationMarks = 0;
 
-  int index = 0;
+  int index = 2;
   double width = Get.width - 50;
   String? legalStatus;
   String? industry;
@@ -193,7 +193,7 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
       coFounder.add(Row(
         children: [
           Container(
-              width: kIsWeb ? width * .5 : width * .99,
+              width: kIsWeb ? width * .4 : width * .99,
               decoration: BoxDecoration(
                   border: Border(
                 bottom: BorderSide(
@@ -506,7 +506,7 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
           height: 50,
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Wrap(
               // mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -1071,12 +1071,13 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
+                    // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       SizedBox(
                         width: kIsWeb ? width * .5 : width,
@@ -1717,6 +1718,7 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -2060,7 +2062,7 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width: kIsWeb ? width * .33 : width,
+                      width: kIsWeb ? width * .3 : width,
                       child: Text(
                         "Service:",
                         style: TextStyle(
@@ -2077,7 +2079,7 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
                         Icon(Icons.circle, size: 5),
                         SizedBox(width: 5),
                         SizedBox(
-                          width: kIsWeb ? width * .33 : width,
+                          width: kIsWeb ? width * .3 : width,
                           child: Text(
                             "Incubator Connection",
                             style: TextStyle(fontSize: 16, color: Colors.black),
@@ -2090,7 +2092,7 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
                         Icon(Icons.circle, size: 5),
                         SizedBox(width: 5),
                         SizedBox(
-                          width: kIsWeb ? width * .33 : width,
+                          width: kIsWeb ? width * .3 : width,
                           child: Text(
                             "Documentation",
                             style: TextStyle(fontSize: 16, color: Colors.black),
@@ -2103,7 +2105,7 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
                         Icon(Icons.circle, size: 5),
                         SizedBox(width: 5),
                         SizedBox(
-                          width: kIsWeb ? width * .33 : width,
+                          width: kIsWeb ? width * .3 : width,
                           child: Text(
                             "Designing MVP (as per customer’s imaginations)",
                             style: TextStyle(fontSize: 16, color: Colors.black),
@@ -2116,7 +2118,7 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
                         Icon(Icons.circle, size: 5),
                         SizedBox(width: 5),
                         SizedBox(
-                          width: kIsWeb ? width * .33 : width,
+                          width: kIsWeb ? width * .3 : width,
                           child: Text(
                             "Comprehensive business planning",
                             style: TextStyle(fontSize: 16, color: Colors.black),
@@ -2129,7 +2131,7 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
                         Icon(Icons.circle, size: 5),
                         SizedBox(width: 5),
                         SizedBox(
-                          width: kIsWeb ? width * .33 : width,
+                          width: kIsWeb ? width * .3 : width,
                           child: Text(
                             "Developing robust business framework",
                             style: TextStyle(fontSize: 16, color: Colors.black),
@@ -2142,7 +2144,7 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
                         Icon(Icons.circle, size: 5),
                         SizedBox(width: 5),
                         SizedBox(
-                          width: kIsWeb ? width * .33 : width,
+                          width: kIsWeb ? width * .3 : width,
                           child: Text(
                             "Team development (passionate and target oriented)",
                             style: TextStyle(fontSize: 16, color: Colors.black),
@@ -2155,7 +2157,7 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
                         Icon(Icons.circle, size: 5),
                         SizedBox(width: 5),
                         SizedBox(
-                          width: kIsWeb ? width * .33 : width,
+                          width: kIsWeb ? width * .3 : width,
                           child: Text(
                             "Training ",
                             style: TextStyle(fontSize: 16, color: Colors.black),
@@ -2168,7 +2170,7 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
                         Icon(Icons.circle, size: 5),
                         SizedBox(width: 5),
                         SizedBox(
-                          width: kIsWeb ? width * .33 : width,
+                          width: kIsWeb ? width * .3 : width,
                           child: Text(
                             "Performance metrics (Planning, executing and monitoring every step meticulously)",
                             style: TextStyle(fontSize: 16, color: Colors.black),
@@ -2202,7 +2204,7 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
                     Row(
                       children: [
                         Container(
-                            width: kIsWeb ? width * .5 : width * .99,
+                            width: kIsWeb ? width * .4 : width * .99,
                             decoration: BoxDecoration(
                                 border: Border(
                               bottom: BorderSide(
@@ -2231,7 +2233,7 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
                 Row(
                   children: [
                     Container(
-                        width: kIsWeb ? width * .5 : width * .99,
+                        width: kIsWeb ? width * .4 : width * .99,
                         decoration: BoxDecoration(
                             border: Border(
                           bottom: BorderSide(
@@ -2260,7 +2262,7 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
                     Row(
                       children: [
                         Container(
-                            width: kIsWeb ? width * .5 : width * .99,
+                            width: kIsWeb ? width * .4 : width * .99,
                             decoration: BoxDecoration(
                                 border: Border(
                               bottom: BorderSide(
@@ -2291,7 +2293,7 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
                     Row(
                       children: [
                         Container(
-                            width: kIsWeb ? width * .5 : width * .99,
+                            width: kIsWeb ? width * .4 : width * .99,
                             decoration: BoxDecoration(
                                 border: Border(
                               bottom: BorderSide(
@@ -2321,7 +2323,7 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width: width * .5,
+                      width: width * .4,
                       child: ListView.builder(
                           shrinkWrap: true,
                           // scrollDirection: Axis.vertical,
@@ -2367,7 +2369,7 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
                               Row(
                                 children: [
                                   Container(
-                                      width: kIsWeb ? width * .5 : width * .99,
+                                      width: kIsWeb ? width * .4 : width * .99,
                                       decoration: BoxDecoration(
                                           border: Border(
                                         bottom: BorderSide(
