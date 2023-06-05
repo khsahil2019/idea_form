@@ -3,6 +3,10 @@ import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:idea_form/screen/first/ideaFirst.dart';
+import 'package:idea_form/screen/fourth/ideaFourth.dart';
+import 'package:idea_form/screen/second/ideaSecond.dart';
+import 'package:idea_form/screen/third/ideaThird.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'firebase_options.dart';
@@ -40,6 +44,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: CreateBusinessIdeaScreen());
+        // home: CreateBusinessIdeaScreen());
+        home: IdeaFirstScreen());
   }
 }
