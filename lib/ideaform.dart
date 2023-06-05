@@ -401,7 +401,7 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
     return Scaffold(
       body: ListView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-        padding: EdgeInsets.symmetric(horizontal: kIsWeb ? 66 : 25),
+        padding: EdgeInsets.symmetric(horizontal: 25),
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -441,14 +441,14 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
                         text: "Next",
                         onTap: () {
                           if (index == 0) {
-                            if (validate()) {
+                            if (!validate()) {
                               setState(() {
                                 //submitIdea();
                                 index++;
                               });
                             }
                           } else if (index == 1) {
-                            if (validateSecond()) {
+                            if (!validateSecond()) {
                               setState(() {
                                 // submitIdea();
                                 index++;
@@ -468,7 +468,7 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
                         ? OutLinedButtonWidget(
                             text: "Submit",
                             onTap: () {
-                              if (validateForth()) {
+                              if (!validateForth()) {
                                 setState(() {
                                   submitIdea();
                                   // index++;
@@ -485,572 +485,536 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Expression of Interest and Acceleration Form",
-            style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 18)),
-        SizedBox(
-          height: 10,
-        ),
-        SizedBox(
-          width: kIsWeb ? width * .9 : width,
-          child: Text(
-              "Thank you for your interest in Rafts and Rivers consultancy services. Please complete the following form to provide us with essential details about your company and the specific areas where you require our expertise. We look forward to helping you achieve your goals.",
-              style: TextStyle(
-                  color: Colors.black,
-                  // fontWeight: FontWeight.bold,
-                  fontSize: 16)),
-        ),
-        SizedBox(
-          height: 50,
-        ),
         OverflowBar(
           overflowAlignment: OverflowBarAlignment.start,
-          // mainAxisAlignment: MainAxisAlignment.spaceAround,
+          spacing: 10,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  width: kIsWeb ? width * .5 : width,
-                  child: Text(
-                    "Give wings to your ideas, turn them into a success story, came along we will nurture your Idea/Concept  and help you building your own Start-Up",
-                    //**** */
-                    style: TextStyle(
-                        color: AppColors.orange,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18),
+            ConstrainedBox(
+              constraints: BoxConstraints(
+                maxWidth: Get.width > 500 ? Get.width * .5 - 25 : Get.width,
+                // minWidth: Get.width > 600 ? Get.width * .4 : Get.width,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Expression of Interest and Acceleration Form",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18)),
+                  SizedBox(
+                    height: 20,
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.start,
-                //   children: [
-                //     Text(AppLocalizations.of(context)!.idea_desk_my_idea_is,
-                //         style: TextStyle(color: Colors.teal))
-                //   ],
-                // ),
-                label("My Idea"),
-                Container(
-                  width: kIsWeb ? width * .5 : width * .99,
-                  decoration:
-                      BoxDecoration(border: getUnderlineBorder(AppColors.teal)),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton(
-                      icon: Container(
-                        margin: EdgeInsets.only(top: 25),
-                        child: Image.asset(
-                          "assets/img/drop.png",
-                          width: 20,
-                        ),
-                      ),
-                      //iconSize: 40,
-                      isExpanded: true,
-                      hint: Text(
-                        "",
-                        style: TextStyle(
-                            color: AppColors.teal, fontWeight: FontWeight.bold),
-                      ),
-                      value: ideaType,
-                      items: ideaTypeList.map<DropdownMenuItem<String>>((text) {
-                        return DropdownMenuItem<String>(
-                          child: Text(
-                            text,
-                            style: TextStyle(
-                                color: AppColors.teal,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          value: text,
-                        );
-                      }).toList(),
-                      onChanged: (value) {
-                        setState(() {
-                          ideaType = value.toString();
-                          switch (ideaTypeList.indexOf(value)) {
-                            case 0:
-                              ideaTypeMarks = 4;
-                              break;
-                            case 1:
-                              ideaTypeMarks = 6;
-                              break;
-                            case 2:
-                              ideaTypeMarks = 9;
-                              break;
-                            case 3:
-                              ideaTypeMarks = 10;
-                              break;
+                  Text(
+                      "Thank you for your interest in Rafts and Rivers consultancy services. Please complete the following form to provide us with essential details about your company and the specific areas where you require our expertise. We look forward to helping you achieve your goals.",
+                      style: TextStyle(
+                          color: Colors.black,
+                          // fontWeight: FontWeight.bold,
+                          fontSize: 16)),
 
-                            default:
-                          }
-                          // ignore: avoid_print
-                          print(ideaType);
-                        });
-                      },
-                    ),
+                  // ),
+                  const SizedBox(
+                    height: 20,
                   ),
-                ),
-                const SizedBox(
-                  height: 25,
-                ),
-                Row(
-                  children: [
-                    Container(
-                      // width: width * .8,
-                      width: kIsWeb ? width * .4 : width * .8,
-                      child: Text(
-                        "My Business /idea is technology based",
-                        style: TextStyle(
-                            color: AppColors.orange,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Container(
-                      // width: width * .2,
-                      width: kIsWeb ? width * .2 : width * .2,
-                      child: Switch(
-                        onChanged: (val) {
+
+                  label("My Idea"),
+                  Container(
+                    // width: kIsWeb ? width * .5 : width * .99,
+                    decoration: BoxDecoration(
+                        border: getUnderlineBorder(AppColors.teal)),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton(
+                        icon: Container(
+                          margin: EdgeInsets.only(top: 25),
+                          child: Image.asset(
+                            "assets/img/drop.png",
+                            width: 20,
+                          ),
+                        ),
+                        //iconSize: 40,
+                        isExpanded: true,
+                        hint: Text(
+                          "",
+                          style: TextStyle(
+                              color: AppColors.teal,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        value: ideaType,
+                        items:
+                            ideaTypeList.map<DropdownMenuItem<String>>((text) {
+                          return DropdownMenuItem<String>(
+                            child: Text(
+                              text,
+                              style: TextStyle(
+                                  color: AppColors.teal,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            value: text,
+                          );
+                        }).toList(),
+                        onChanged: (value) {
                           setState(() {
-                            technologyMarks = val ? 10 : 0;
-                            isTechnology = val;
+                            ideaType = value.toString();
+                            switch (ideaTypeList.indexOf(value)) {
+                              case 0:
+                                ideaTypeMarks = 4;
+                                break;
+                              case 1:
+                                ideaTypeMarks = 6;
+                                break;
+                              case 2:
+                                ideaTypeMarks = 9;
+                                break;
+                              case 3:
+                                ideaTypeMarks = 10;
+                                break;
+
+                              default:
+                            }
+                            // ignore: avoid_print
+                            print(ideaType);
                           });
                         },
-                        value: isTechnology,
-                        activeColor: Colors.green,
-                        activeTrackColor: AppColors.orange,
-                        inactiveThumbColor: Colors.grey,
-                        inactiveTrackColor: AppColors.orange,
                       ),
-                    )
-                  ],
-                ),
-                // const SizedBox(
-                //   height: 25,
-                // ),
-                isTechnology
-                    ? Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: kIsWeb ? width * .5 : width * .99,
-                            height: 60,
-                            decoration: BoxDecoration(
-                                border: getUnderlineBorder(AppColors.teal)),
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton(
-                                icon: Container(
-                                  margin: EdgeInsets.only(top: 25),
-                                  child: Image.asset(
-                                    "assets/img/drop.png",
-                                    width: 20,
-                                  ),
-                                ),
-                                isDense: true,
-                                // iconSize: 40,
-                                isExpanded: true,
-                                hint: Text(
-                                  "Technology is used",
-                                  style: TextStyle(
-                                      color: AppColors.teal,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                value: techno,
-                                items: technoList
-                                    .map<DropdownMenuItem<String>>((text) {
-                                  return DropdownMenuItem<String>(
-                                    child: Text(
-                                      text,
-                                      style: TextStyle(
-                                          color: AppColors.teal,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    value: text,
-                                  );
-                                }).toList(),
-                                onChanged: (value) {
-                                  switch (technoList.indexOf(value)) {
-                                    case 0:
-                                    case 1:
-                                      technologyMarks = 4;
-                                      break;
-                                    case 2:
-                                      technologyMarks = 3;
-                                      break;
-                                    case 3:
-                                      technologyMarks = 10;
-                                  }
-
-                                  setState(() {
-                                    techno = value.toString();
-                                    // ignore: avoid_print
-                                    print(techno);
-                                    print("object");
-                                  });
-                                },
-                              ),
-                            ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        // width: width * .8,
+                        //width: kIsWeb ? width * .4 : width * .8,
+                        child: Expanded(
+                          child: Text(
+                            "My Business /idea is technology based",
+                            style: TextStyle(
+                                color: AppColors.orange,
+                                fontWeight: FontWeight.bold),
                           ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            width: kIsWeb ? width * .5 : width * .99,
-                            decoration: BoxDecoration(
-                                border: getUnderlineBorder(AppColors.teal)),
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton(
-                                icon: Container(
-                                  margin: EdgeInsets.only(top: 25),
-                                  child: Image.asset(
-                                    "assets/img/drop.png",
-                                    width: 20,
-                                  ),
-                                ),
-                                // iconSize: 40,
-                                isExpanded: true,
-                                hint: Text(
-                                  "The form of technology used is",
-                                  style: TextStyle(
-                                      color: AppColors.teal,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                value: form,
-                                items: formList
-                                    .map<DropdownMenuItem<String>>((text) {
-                                  return DropdownMenuItem<String>(
-                                    child: Text(
-                                      text,
-                                      style: TextStyle(
-                                          color: AppColors.teal,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    value: text,
-                                  );
-                                }).toList(),
-                                onChanged: (value) {
-                                  setState(() {
-                                    form = value.toString();
-                                    // ignore: avoid_print
-                                    print(form);
-                                  });
-                                },
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 25,
-                          ),
-                          form == "Something else"
-                              ? Row(
-                                  children: [
-                                    Container(
-                                      width: kIsWeb ? width * .5 : width * .99,
-                                      child: IdeaTextField(
-                                          controller: somethingCtrl,
-                                          label: "Define Something else"),
-                                    ),
-                                  ],
-                                )
-                              : SizedBox(),
-                          SizedBox(
-                            height: 25,
-                          ),
-                        ],
+                        ),
+                      ),
+                      Container(
+                        // width: width * .2,
+                        // width: kIsWeb ? width * .2 : width * .2,
+                        child: Switch(
+                          onChanged: (val) {
+                            setState(() {
+                              technologyMarks = val ? 10 : 0;
+                              isTechnology = val;
+                            });
+                          },
+                          value: isTechnology,
+                          activeColor: Colors.green,
+                          activeTrackColor: AppColors.orange,
+                          inactiveThumbColor: Colors.grey,
+                          inactiveTrackColor: AppColors.orange,
+                        ),
                       )
-                    : SizedBox(),
+                    ],
+                  ),
+                  // const SizedBox(
+                  //   height: 25,
+                  // ),
+                  isTechnology
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              //   width: kIsWeb ? width * .5 : width * .99,
+                              height: 60,
+                              decoration: BoxDecoration(
+                                  border: getUnderlineBorder(AppColors.teal)),
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton(
+                                  icon: Container(
+                                    margin: EdgeInsets.only(top: 25),
+                                    child: Image.asset(
+                                      "assets/img/drop.png",
+                                      width: 20,
+                                    ),
+                                  ),
+                                  isDense: true,
+                                  // iconSize: 40,
+                                  isExpanded: true,
+                                  hint: Text(
+                                    "Technology is used",
+                                    style: TextStyle(
+                                        color: AppColors.teal,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  value: techno,
+                                  items: technoList
+                                      .map<DropdownMenuItem<String>>((text) {
+                                    return DropdownMenuItem<String>(
+                                      child: Text(
+                                        text,
+                                        style: TextStyle(
+                                            color: AppColors.teal,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      value: text,
+                                    );
+                                  }).toList(),
+                                  onChanged: (value) {
+                                    switch (technoList.indexOf(value)) {
+                                      case 0:
+                                      case 1:
+                                        technologyMarks = 4;
+                                        break;
+                                      case 2:
+                                        technologyMarks = 3;
+                                        break;
+                                      case 3:
+                                        technologyMarks = 10;
+                                    }
 
-                Row(
-                  children: [
-                    Container(
-                      width: kIsWeb ? width * .4 : width * .8,
-                      child: Text(
-                        "My business/idea provides an innovative solutions to a particular problem",
-                        style: TextStyle(
-                            color: AppColors.orange,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Container(
-                      width: kIsWeb ? width * .2 : width * .2,
-                      child: Switch(
-                        onChanged: (val) {
-                          setState(() {
-                            isSolution = val;
-                          });
-                        },
-                        value: isSolution,
-                        activeColor: Colors.green,
-                        activeTrackColor: AppColors.orange,
-                        inactiveThumbColor: Colors.grey,
-                        inactiveTrackColor: AppColors.orange,
-                      ),
-                    )
-                  ],
-                ),
-                Row(
-                  children: [
-                    Container(
-                      width: kIsWeb ? width * .4 : width * .8,
-                      child: Text(
-                        "My business/idea provides value to a potential customers beyond its cost",
-                        style: TextStyle(
-                            color: AppColors.orange,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Container(
-                      width: kIsWeb ? width * .2 : width * .2,
-                      child: Switch(
-                        onChanged: (val) {
-                          setState(() {
-                            isCustomer = val;
-                          });
-                        },
-                        value: isCustomer,
-                        activeColor: Colors.green,
-                        activeTrackColor: AppColors.orange,
-                        inactiveThumbColor: Colors.grey,
-                        inactiveTrackColor: AppColors.orange,
-                      ),
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: 25,
-                ),
-                label("Industry"),
+                                    setState(() {
+                                      techno = value.toString();
+                                      // ignore: avoid_print
+                                      print(techno);
+                                      print("object");
+                                    });
+                                  },
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              // width: kIsWeb ? width * .5 : width * .99,
+                              decoration: BoxDecoration(
+                                  border: getUnderlineBorder(AppColors.teal)),
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton(
+                                  icon: Container(
+                                    margin: EdgeInsets.only(top: 25),
+                                    child: Image.asset(
+                                      "assets/img/drop.png",
+                                      width: 20,
+                                    ),
+                                  ),
+                                  // iconSize: 40,
+                                  isExpanded: true,
+                                  hint: Text(
+                                    "The form of technology used is",
+                                    style: TextStyle(
+                                        color: AppColors.teal,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  value: form,
+                                  items: formList
+                                      .map<DropdownMenuItem<String>>((text) {
+                                    return DropdownMenuItem<String>(
+                                      child: Text(
+                                        text,
+                                        style: TextStyle(
+                                            color: AppColors.teal,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      value: text,
+                                    );
+                                  }).toList(),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      form = value.toString();
+                                      // ignore: avoid_print
+                                      print(form);
+                                    });
+                                  },
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 25,
+                            ),
+                            form == "Something else"
+                                ? Row(
+                                    children: [
+                                      Container(
+                                        width:
+                                            kIsWeb ? width * .5 : width * .99,
+                                        child: IdeaTextField(
+                                            controller: somethingCtrl,
+                                            label: "Define Something else"),
+                                      ),
+                                    ],
+                                  )
+                                : SizedBox(),
+                            SizedBox(
+                              height: 25,
+                            ),
+                          ],
+                        )
+                      : SizedBox(),
 
-                Container(
-                  width: kIsWeb ? width * .5 : width * .99,
-                  decoration: BoxDecoration(
-                      border: getUnderlineBorder(AppColors.secondary)),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton(
-                      icon: Container(
-                        margin: EdgeInsets.only(top: 25),
-                        child: Image.asset(
-                          "assets/img/drop.png",
-                          width: 20,
-                        ),
-                      ),
-                      //iconSize: 40,
-                      isExpanded: true,
-                      hint: Text(
-                        "",
-                        style: TextStyle(
-                            color: AppColors.teal, fontWeight: FontWeight.bold),
-                      ),
-                      value: industry,
-                      items: industryList.map<DropdownMenuItem<String>>((text) {
-                        return DropdownMenuItem<String>(
+                  Row(
+                    children: [
+                      Container(
+                        // width: kIsWeb ? width * .4 : width * .8,
+                        child: Expanded(
                           child: Text(
-                            text,
+                            "My business/idea provides an innovative solutions to a particular problem",
                             style: TextStyle(
-                                color: AppColors.teal,
+                                color: AppColors.orange,
                                 fontWeight: FontWeight.bold),
                           ),
-                          value: text,
-                        );
-                      }).toList(),
-                      onChanged: (value) {
-                        setState(() {
-                          industry = value.toString();
-                          // ignore: avoid_print
-                          print(industry);
-                        });
-                      },
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 25,
-                ),
-                Row(
-                  children: [
-                    Container(
-                      width: kIsWeb ? width * .4 : width * .8,
-                      child: Text(
-                        "Have your business/idea generated any revenue  ",
-                        style: TextStyle(
-                            color: AppColors.orange,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Container(
-                      width: kIsWeb ? width * .2 : width * .2,
-                      child: Switch(
-                        onChanged: (val) {
-                          setState(() {
-                            isRevenue = val;
-                          });
-                        },
-                        value: isRevenue,
-                        activeColor: Colors.green,
-                        activeTrackColor: AppColors.orange,
-                        inactiveThumbColor: Colors.grey,
-                        inactiveTrackColor: AppColors.orange,
-                      ),
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: 25,
-                ),
-                label("Legal Status"),
-                Container(
-                  width: kIsWeb ? width * .5 : width * .99,
-                  decoration: BoxDecoration(
-                      border: getUnderlineBorder(AppColors.secondary)),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton(
-                      icon: Container(
-                        margin: EdgeInsets.only(top: 25),
-                        child: Image.asset(
-                          "assets/img/drop.png",
-                          width: 20,
                         ),
                       ),
-                      // iconSize: 40,
-                      isExpanded: true,
-                      hint: Text(
-                        "",
-                        style: TextStyle(
-                            color: AppColors.teal, fontWeight: FontWeight.bold),
-                      ),
-                      value: legalStatus,
-                      items:
-                          legalStatusList.map<DropdownMenuItem<String>>((text) {
-                        return DropdownMenuItem<String>(
+                      Container(
+                        //width: kIsWeb ? width * .2 : width * .2,
+                        child: Switch(
+                          onChanged: (val) {
+                            setState(() {
+                              isSolution = val;
+                            });
+                          },
+                          value: isSolution,
+                          activeColor: Colors.green,
+                          activeTrackColor: AppColors.orange,
+                          inactiveThumbColor: Colors.grey,
+                          inactiveTrackColor: AppColors.orange,
+                        ),
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        //width: kIsWeb ? width * .4 : width * .8,
+                        child: Expanded(
                           child: Text(
-                            text,
+                            "My business/idea provides value to a potential customers beyond its cost",
                             style: TextStyle(
-                                color: AppColors.teal,
+                                color: AppColors.orange,
                                 fontWeight: FontWeight.bold),
                           ),
-                          value: text,
-                        );
-                      }).toList(),
-                      onChanged: (value) {
-                        setState(() {
-                          legalStatus = value.toString();
-                          // ignore: avoid_print
-                          // print(legalStatus);
-                        });
-                      },
+                        ),
+                      ),
+                      Container(
+                        //width: kIsWeb ? width * .2 : width * .2,
+                        child: Switch(
+                          onChanged: (val) {
+                            setState(() {
+                              isCustomer = val;
+                            });
+                          },
+                          value: isCustomer,
+                          activeColor: Colors.green,
+                          activeTrackColor: AppColors.orange,
+                          inactiveThumbColor: Colors.grey,
+                          inactiveTrackColor: AppColors.orange,
+                        ),
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  label("Industry"),
+
+                  Container(
+                    // width: kIsWeb ? width * .5 : width * .99,
+                    decoration: BoxDecoration(
+                        border: getUnderlineBorder(AppColors.secondary)),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton(
+                        icon: Container(
+                          margin: EdgeInsets.only(top: 25),
+                          child: Image.asset(
+                            "assets/img/drop.png",
+                            width: 20,
+                          ),
+                        ),
+                        //iconSize: 40,
+                        isExpanded: true,
+                        hint: Text(
+                          "",
+                          style: TextStyle(
+                              color: AppColors.teal,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        value: industry,
+                        items:
+                            industryList.map<DropdownMenuItem<String>>((text) {
+                          return DropdownMenuItem<String>(
+                            child: Text(
+                              text,
+                              style: TextStyle(
+                                  color: AppColors.teal,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            value: text,
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            industry = value.toString();
+                            // ignore: avoid_print
+                            print(industry);
+                          });
+                        },
+                      ),
                     ),
                   ),
-                ),
-
-                // Row(
-                //   children: [
-                //     Container(
-                //         width: kIsWeb ? width * .5 : width * .99,
-                //         child: label2("Year of Incorporation")),
-                //   ],
-                // ),
-                SizedBox(
-                  height: 20,
-                ),
-                label("Year of Corporation"),
-
-                // buildTextField(business_nameCTRL, ""),
-                Row(
-                  children: [
-                    Container(
-                        width: kIsWeb ? width * .5 : width * .99,
-                        child: IdeaTextField(
-                          controller: yearOfCorporationCTRL,
-                        )),
-                  ],
-                ),
-                // ListView.builder(
-                //     shrinkWrap: true,
-                //     physics: const ScrollPhysics(),
-                //     itemCount: coFounder.length,
-                //     itemBuilder: (context, index) {
-                //       return coFounder[index];
-                //     }),
-
-                // const SizedBox(height: 10.0),
-                // Row(
-                //   mainAxisAlignment:
-                //       kIsWeb ? MainAxisAlignment.center : MainAxisAlignment.end,
-                //   children: [
-                //     kIsWeb ? SizedBox(width: width * .2) : SizedBox(),
-                //     GestureDetector(
-                //         onTap: () {
-                //           if (coFounder.length > 1) {
-                //             setState(() {
-                //               coFounder.removeLast();
-                //               coFounderCTRL.removeLast();
-                //             });
-                //           }
-                //         },
-                //         child: Padding(
-                //           padding: EdgeInsets.symmetric(horizontal: 5),
-                //           child: Icon(
-                //             Icons.remove,
-                //             size: 20,
-                //             color: AppColors.teal,
-                //           ),
-                //         )),
-                //     GestureDetector(
-                //         onTap: () {
-                //           coFounderCTRL.add(TextEditingController());
-                //           coFounder.add(Row(
-                //             children: [
-                //               Container(
-                //                 width: kIsWeb ? width * .5 : width * .99,
-                //                 child: IdeaTextField(
-                //                   controller: coFounderCTRL.last,
-                //                 ),
-                //               ),
-                //             ],
-                //           ));
-                //           setState(() {});
-                //         },
-                //         child: Padding(
-                //           padding: EdgeInsets.symmetric(horizontal: 5),
-                //           child: Icon(
-                //             Icons.add,
-                //             size: 20,
-                //             color: AppColors.teal,
-                //           ),
-                //         )),
-                //   ],
-                // ),
-                // SizedBox(
-                //   height: 20,
-                // ),
-              ],
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  width: kIsWeb ? width * .28 : width,
-                  child: Text(
-                    "ABOUT US:",
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
+                  const SizedBox(
+                    height: 25,
                   ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                SizedBox(
-                  width: kIsWeb ? width * .3 : width,
-                  child: Text(
-                    "Welcome to Rafts and Rivers LLC, a leading consultancy firm specializing in providing tailored solutions to help Start-ups and Incubators achieve their goals and maximize their potential. With our extensive expertise and deep industry knowledge, we connect our clients with the resources and support necessary to thrive in today's competitive business landscape.",
-                    style: TextStyle(fontSize: 16, color: Colors.black),
+                  Row(
+                    children: [
+                      Container(
+                        // width: kIsWeb ? width * .4 : width * .8,
+                        child: Expanded(
+                          child: Text(
+                            "Have your business/idea generated any revenue  ",
+                            style: TextStyle(
+                                color: AppColors.orange,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        //  width: kIsWeb ? width * .2 : width * .2,
+                        child: Switch(
+                          onChanged: (val) {
+                            setState(() {
+                              isRevenue = val;
+                            });
+                          },
+                          value: isRevenue,
+                          activeColor: Colors.green,
+                          activeTrackColor: AppColors.orange,
+                          inactiveThumbColor: Colors.grey,
+                          inactiveTrackColor: AppColors.orange,
+                        ),
+                      )
+                    ],
                   ),
-                )
-              ],
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  label("Legal Status"),
+                  Container(
+                    // width: kIsWeb ? width * .5 : width * .99,
+                    decoration: BoxDecoration(
+                        border: getUnderlineBorder(AppColors.secondary)),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton(
+                        icon: Container(
+                          margin: EdgeInsets.only(top: 25),
+                          child: Image.asset(
+                            "assets/img/drop.png",
+                            width: 20,
+                          ),
+                        ),
+                        // iconSize: 40,
+                        isExpanded: true,
+                        hint: Text(
+                          "",
+                          style: TextStyle(
+                              color: AppColors.teal,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        value: legalStatus,
+                        items: legalStatusList
+                            .map<DropdownMenuItem<String>>((text) {
+                          return DropdownMenuItem<String>(
+                            child: Text(
+                              text,
+                              style: TextStyle(
+                                  color: AppColors.teal,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            value: text,
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            legalStatus = value.toString();
+                            // ignore: avoid_print
+                            // print(legalStatus);
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: 20,
+                  ),
+                  label("Year of Corporation"),
+
+                  // buildTextField(business_nameCTRL, ""),
+                  Container(
+                      //width: kIsWeb ? width * .5 : width * .99,
+                      child: IdeaTextField(
+                    controller: yearOfCorporationCTRL,
+                  )),
+                ],
+              ),
             ),
+            ConstrainedBox(
+              constraints: BoxConstraints(
+                maxWidth: Get.width > 500 ? Get.width * .4 : Get.width,
+                //minWidth: Get.width > 600 ? Get.width * .4 : Get.width,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 30,
+                  ),
+                  SizedBox(
+                    // width: kIsWeb ? width * .28 : width,
+                    child: Text(
+                      "ABOUT US:",
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    // width: kIsWeb ? width * .3 : width,
+                    child: Text(
+                      "Welcome to Rafts and Rivers LLC, a leading consultancy firm specializing in providing tailored solutions to help Start-ups and Incubators achieve their goals and maximize their potential. With our extensive expertise and deep industry knowledge, we connect our clients with the resources and support necessary to thrive in today's competitive business landscape.",
+                      style: TextStyle(fontSize: 16, color: Colors.black),
+                    ),
+                  )
+                ],
+              ),
+            ),
+
+            //  Column(
+            //   crossAxisAlignment: CrossAxisAlignment.start,
+            //   children: [
+            //     SizedBox(
+            //       width: kIsWeb ? width * .28 : width,
+            //       child: Text(
+            //         "ABOUT US:",
+            //         style: TextStyle(
+            //             fontSize: 16,
+            //             fontWeight: FontWeight.bold,
+            //             color: Colors.black),
+            //       ),
+            //     ),
+            //     SizedBox(
+            //       height: 20,
+            //     ),
+            //     SizedBox(
+            //       width: kIsWeb ? width * .3 : width,
+            //       child: Text(
+            //         "Welcome to Rafts and Rivers LLC, a leading consultancy firm specializing in providing tailored solutions to help Start-ups and Incubators achieve their goals and maximize their potential. With our extensive expertise and deep industry knowledge, we connect our clients with the resources and support necessary to thrive in today's competitive business landscape.",
+            //         style: TextStyle(fontSize: 16, color: Colors.black),
+            //       ),
+            //     )
+            //   ],
+            // ),
           ],
         )
       ],
