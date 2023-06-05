@@ -54,7 +54,7 @@ class _CreateBusinessIdeaScreen extends State<CreateBusinessIdeaScreen> {
   String? education;
   int educationMarks = 0;
 
-  int index = 2;
+  int index = 0;
   double width = Get.width - 50;
   String? legalStatus;
   String? industry;
