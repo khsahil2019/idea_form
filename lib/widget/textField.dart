@@ -163,11 +163,13 @@ Widget label(String txt) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.start,
     children: [
-      Text(txt,
-          style: TextStyle(
-            color: AppColors.teal, fontSize: 16,
-            // fontWeight: FontWeight.bold
-          ))
+      Expanded(
+        child: Text(txt,
+            style: TextStyle(
+              color: AppColors.teal, fontSize: 16,
+              // fontWeight: FontWeight.bold
+            )),
+      )
     ],
   );
 }
