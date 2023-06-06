@@ -828,7 +828,7 @@ class _IdeaSecondScreenState extends State<IdeaSecondScreen> {
                             OutLinedButtonWidget(
                               text: "Back",
                               onTap: () {
-                                Get.to(() => IdeaFirstScreen());
+                                Navigator.pop(context);
                               },
                             ),
                             OutLinedButtonWidget(

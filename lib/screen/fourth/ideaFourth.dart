@@ -12,6 +12,7 @@ import '../../services/firebaseStorage.dart';
 import '../../services/ideaServices.dart';
 import '../../widget/button.dart';
 import '../../widget/filePicker.dart';
+import '../../widget/imagePicker.dart';
 import '../../widget/show_loading.dart';
 import '../../widget/textField.dart';
 import '../../widget/toast.dart';
@@ -103,6 +104,12 @@ class _IdeaFourthScreenState extends State<IdeaFourthScreen> {
   List<TextEditingController> coFounderCTRL = [
     TextEditingController(),
   ];
+  File? uploadImage;
+  File? uploadImage2;
+  File? uploadImage3;
+  Uint8List? uploadImageBytes;
+  Uint8List? uploadImage2Bytes;
+  Uint8List? uploadImage3Bytes;
   @override
   void initState() {
     // TODO: implement initState
@@ -478,6 +485,318 @@ class _IdeaFourthScreenState extends State<IdeaFourthScreen> {
                         SizedBox(
                           height: 20,
                         ),
+/********************************************************************************************/
+                        OverflowBar(
+                            overflowAlignment: OverflowBarAlignment.start,
+                            spacing: 50,
+                            children: [
+                              ConstrainedBox(
+                                  constraints: BoxConstraints(
+                                    maxWidth: Get.width > 500
+                                        ? Get.width * .5 - 25
+                                        : Get.width,
+                                    // minWidth: Get.width > 600 ? Get.width * .4 : Get.width,
+                                  ),
+                                  child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            // showPicker(context);
+                                            if (kIsWeb) {
+                                              ImagePickerService.pickImageWeb(
+                                                      imageQuality: 20)
+                                                  .then((value) {
+                                                if (value != null) {
+                                                  setState(() {
+                                                    // Uni8int8List to File
+                                                    uploadImageBytes =
+                                                        value["byteData"];
+                                                    uploadImage =
+                                                        File.fromRawPath(
+                                                            value["byteData"]);
+                                                  });
+                                                }
+                                              });
+                                            } else
+                                              ImagePickerService.pickImageUI(
+                                                  (val) {
+                                                setState(() {
+                                                  uploadImage = val;
+                                                });
+                                              }, 20);
+                                          },
+                                          child: uploadImage == null
+                                              ? Container(
+                                                  width: 100.0,
+                                                  height: 100.0,
+                                                  decoration: BoxDecoration(
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Colors.grey,
+                                                        offset: Offset(3, 5),
+                                                        blurRadius: 5,
+                                                      ),
+                                                    ],
+                                                    color: Colors.white,
+                                                    border: Border.all(
+                                                      color: Color(0xFF111D3A),
+                                                    ),
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  child: const Icon(
+                                                    Icons.add_a_photo_outlined,
+                                                    size: 40,
+                                                    color: Colors.blueGrey,
+                                                  ),
+                                                )
+                                              : Container(
+                                                  width: 100.0,
+                                                  height: 100.0,
+                                                  decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Colors.grey,
+                                                        offset: Offset(3, 5),
+                                                        blurRadius: 5,
+                                                      ),
+                                                    ],
+                                                    color: Colors.black,
+                                                    image: kIsWeb
+                                                        ? DecorationImage(
+                                                            fit: BoxFit.cover,
+                                                            image: MemoryImage(
+                                                                uploadImageBytes!),
+                                                            // image: NetworkImage(
+                                                            //     uploadImage!.path.toString())
+                                                          )
+                                                        : DecorationImage(
+                                                            fit: BoxFit.cover,
+                                                            image: FileImage(
+                                                                uploadImage!),
+                                                          ),
+                                                  ),
+                                                ),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          "Image of Co-Founder1",
+                                          style: TextStyle(
+                                              color: AppColors.teal,
+                                              fontSize: 12),
+                                        ),
+                                      ])),
+                              ConstrainedBox(
+                                  constraints: BoxConstraints(
+                                    maxWidth: Get.width > 500
+                                        ? Get.width * .5 - 25
+                                        : Get.width,
+                                    // minWidth: Get.width > 600 ? Get.width * .4 : Get.width,
+                                  ),
+                                  child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            // showPicker(context);
+                                            if (kIsWeb) {
+                                              ImagePickerService.pickImageWeb(
+                                                      imageQuality: 20)
+                                                  .then((value) {
+                                                if (value != null) {
+                                                  setState(() {
+                                                    // Uni8int8List to File
+                                                    uploadImage2Bytes =
+                                                        value["byteData"];
+                                                    uploadImage2 =
+                                                        File.fromRawPath(
+                                                            value["byteData"]);
+                                                  });
+                                                }
+                                              });
+                                            } else
+                                              ImagePickerService.pickImageUI(
+                                                  (val) {
+                                                setState(() {
+                                                  uploadImage2 = val;
+                                                });
+                                              }, 20);
+                                          },
+                                          child: uploadImage2 == null
+                                              ? Container(
+                                                  width: 100.0,
+                                                  height: 100.0,
+                                                  decoration: BoxDecoration(
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Colors.grey,
+                                                        offset: Offset(3, 5),
+                                                        blurRadius: 5,
+                                                      ),
+                                                    ],
+                                                    color: Colors.white,
+                                                    border: Border.all(
+                                                      color: Color(0xFF111D3A),
+                                                    ),
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  child: const Icon(
+                                                    Icons.add_a_photo_outlined,
+                                                    size: 40,
+                                                    color: Colors.blueGrey,
+                                                  ),
+                                                )
+                                              : Container(
+                                                  width: 100.0,
+                                                  height: 100.0,
+                                                  decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Colors.grey,
+                                                        offset: Offset(3, 5),
+                                                        blurRadius: 5,
+                                                      ),
+                                                    ],
+                                                    color: Colors.black,
+                                                    image: kIsWeb
+                                                        ? DecorationImage(
+                                                            fit: BoxFit.cover,
+                                                            image: MemoryImage(
+                                                                uploadImage2Bytes!),
+                                                            // image: NetworkImage(
+                                                            //     uploadImage!.path.toString())
+                                                          )
+                                                        : DecorationImage(
+                                                            fit: BoxFit.cover,
+                                                            image: FileImage(
+                                                                uploadImage2!),
+                                                          ),
+                                                  ),
+                                                ),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          "Image of Co-Founder2",
+                                          style: TextStyle(
+                                              color: AppColors.teal,
+                                              fontSize: 12),
+                                        ),
+                                      ])),
+                              ConstrainedBox(
+                                  constraints: BoxConstraints(
+                                    maxWidth: Get.width > 500
+                                        ? Get.width * .5 - 25
+                                        : Get.width,
+                                    // minWidth: Get.width > 600 ? Get.width * .4 : Get.width,
+                                  ),
+                                  child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            // showPicker(context);
+                                            if (kIsWeb) {
+                                              ImagePickerService.pickImageWeb(
+                                                      imageQuality: 20)
+                                                  .then((value) {
+                                                if (value != null) {
+                                                  setState(() {
+                                                    // Uni8int8List to File
+                                                    uploadImage3Bytes =
+                                                        value["byteData"];
+                                                    uploadImage3 =
+                                                        File.fromRawPath(
+                                                            value["byteData"]);
+                                                  });
+                                                }
+                                              });
+                                            } else
+                                              ImagePickerService.pickImageUI(
+                                                  (val) {
+                                                setState(() {
+                                                  uploadImage3 = val;
+                                                });
+                                              }, 20);
+                                          },
+                                          child: uploadImage3 == null
+                                              ? Container(
+                                                  width: 100.0,
+                                                  height: 100.0,
+                                                  decoration: BoxDecoration(
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Colors.grey,
+                                                        offset: Offset(3, 5),
+                                                        blurRadius: 5,
+                                                      ),
+                                                    ],
+                                                    color: Colors.white,
+                                                    border: Border.all(
+                                                      color: Color(0xFF111D3A),
+                                                    ),
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  child: const Icon(
+                                                    Icons.add_a_photo_outlined,
+                                                    size: 40,
+                                                    color: Colors.blueGrey,
+                                                  ),
+                                                )
+                                              : Container(
+                                                  width: 100.0,
+                                                  height: 100.0,
+                                                  decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    boxShadow: const [
+                                                      BoxShadow(
+                                                        color: Colors.grey,
+                                                        offset: Offset(3, 5),
+                                                        blurRadius: 5,
+                                                      ),
+                                                    ],
+                                                    color: Colors.black,
+                                                    image: kIsWeb
+                                                        ? DecorationImage(
+                                                            fit: BoxFit.cover,
+                                                            image: MemoryImage(
+                                                                uploadImage3Bytes!),
+                                                            // image: NetworkImage(
+                                                            //     uploadImage!.path.toString())
+                                                          )
+                                                        : DecorationImage(
+                                                            fit: BoxFit.cover,
+                                                            image: FileImage(
+                                                                uploadImage3!),
+                                                          ),
+                                                  ),
+                                                ),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          "Image of Co-Founder3",
+                                          style: TextStyle(
+                                              color: AppColors.teal,
+                                              fontSize: 12),
+                                        ),
+                                      ])),
+                            ]),
+
+                        SizedBox(
+                          height: 20,
+                        ),
+
+/********************************************************************************************/
 
                         SizedBox(height: 30),
 

@@ -627,7 +627,7 @@ class _IdeaThirdScreenState extends State<IdeaThirdScreen> {
                             OutLinedButtonWidget(
                               text: "Back",
                               onTap: () {
-                                Get.to(() => IdeaSecondScreen());
+                                Navigator.pop(context);
                               },
                             ),
                             OutLinedButtonWidget(

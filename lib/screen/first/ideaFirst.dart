@@ -208,6 +208,7 @@ class _IdeaFirstScreenState extends State<IdeaFirstScreen> {
     });
   }
 
+  final Map businessIdea1Map = {};
   void submitIdea1() async {
     Map<String, dynamic> businessIdea1 = {
       // "userId": auth.currentUser!.uid,
@@ -226,7 +227,7 @@ class _IdeaFirstScreenState extends State<IdeaFirstScreen> {
       "yearOfCorporation": yearOfCorporationCTRL.text,
     };
     // ideaController.myMap.addAll(businessIdea);
-    // businessIdea1.addAll(businessIdea1);
+    businessIdea1Map.addAll(businessIdea1);
     log(businessIdea1.toString());
     //print(businessIdea1.toString());
   }
