@@ -15,10 +15,11 @@ class EmailService {
       String? email,
       String? name,
       String? html}) async {
+    log("Sending email to $email");
     final message = Message()
       ..from = Address(_username, name ?? 'Team Crux')
-      ..recipients.add("contact@crux.center")
-      // ..recipients.add("vineetkaimau@gmail.com")
+      // ..recipients.add("contact@crux.center")
+      ..recipients.add("vineetkaimau@gmail.com")
       ..subject = subject ?? 'Congratulations! new business idea from $email'
       ..text = description
       ..html = html;

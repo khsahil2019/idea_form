@@ -9,6 +9,7 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 import '../../constant/ui_constant.dart';
 import '../../controller/ideaController.dart';
+import '../../services/email.dart';
 import '../../widget/button.dart';
 import '../../widget/textField.dart';
 import '../../widget/toast.dart';
@@ -256,11 +257,20 @@ class _IdeaFirstScreenState extends State<IdeaFirstScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Expression of Interest and Acceleration Form",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18)),
+                        GestureDetector(
+                          onTap: () {
+                            EmailService().sendEmail(
+                                email: emailCtrl.text,
+                                description:
+                                    "ideaController.ideaData.toString()");
+                          },
+                          child: Text(
+                              "Expression of Interest and Acceleration Form",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18)),
+                        ),
                         SizedBox(
                           height: 20,
                         ),
