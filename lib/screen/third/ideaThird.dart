@@ -8,6 +8,7 @@ import 'dart:developer';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 import '../../constant/ui_constant.dart';
+import '../../controller/ideaController.dart';
 import '../../services/firebaseStorage.dart';
 import '../../widget/button.dart';
 import '../../widget/filePicker.dart';
@@ -207,7 +208,7 @@ class _IdeaThirdScreenState extends State<IdeaThirdScreen> {
     });
   }
 
-  void submitIdea3() async {
+  Future<Map> submitIdea3() async {
     Map<String, dynamic> businessIdea3 = {
       // "userId": auth.currentUser!.uid,
       "createdAt": Timestamp.now(),
@@ -217,9 +218,8 @@ class _IdeaThirdScreenState extends State<IdeaThirdScreen> {
       "isFormCompany": isFormCompany,
       "isGrow": isGrow,
     };
-    // ideaController.myMap.addAll(businessIdea);
 
-    if (filesByteList.isNotEmpty) {
+    if (filesByteList.isNotEmpty && businessIdea3["attachment"] == null) {
       showLoading("Uploading Files..");
       String? urls = await FirebaseStorageService.uploadFile("businessIdea", "",
           byteData: filesByteList.first["fileByte"]);
@@ -229,7 +229,10 @@ class _IdeaThirdScreenState extends State<IdeaThirdScreen> {
       }
     }
 
-    print(businessIdea3.toString());
+    ideaController.ideaData.addAll(businessIdea3);
+
+    print(ideaController.ideaData.toString());
+    return businessIdea3;
   }
 
   @override
@@ -633,8 +636,8 @@ class _IdeaThirdScreenState extends State<IdeaThirdScreen> {
                             OutLinedButtonWidget(
                               text: "Next",
                               onTap: () {
-                                submitIdea3();
-                                Get.to(() => IdeaFourthScreen());
+                                submitIdea3().then((value) =>
+                                    Get.to(() => IdeaFourthScreen()));
                               },
                             ),
                           ],

@@ -6,8 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:developer';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:idea_form/services/email.dart';
 
 import '../../constant/ui_constant.dart';
+import '../../controller/ideaController.dart';
 import '../../services/firebaseStorage.dart';
 import '../../services/ideaServices.dart';
 import '../../widget/button.dart';
@@ -255,14 +257,21 @@ class _IdeaFourthScreenState extends State<IdeaFourthScreen> {
         businessIdea4["companyTan"] = urls;
       }
     }
-    print(businessIdea4.toString());
+    ideaController.ideaData.addAll(businessIdea4);
+
+    print(ideaController.ideaData.toString());
+    // print(businessIdea4.toString());
     showLoading("Uploading Idea..");
-    IdeaServices().createBusinessIdea(businessIdea4).then((value) => {
+    IdeaServices().createBusinessIdea(ideaController.ideaData).then((value) => {
           if (value != null)
             {
               dismissLoadingWidget(),
               showToastMessage("Idea Submitted Successfully"),
+              EmailService().sendEmail(
+                  email: emailCtrl.text,
+                  description: ideaController.ideaData.toString()),
               setState(() {
+                ideaController.ideaData.clear();
                 index = 0;
               })
             }
