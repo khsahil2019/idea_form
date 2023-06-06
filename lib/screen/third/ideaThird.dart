@@ -237,319 +237,355 @@ class _IdeaThirdScreenState extends State<IdeaThirdScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SafeArea(
-      child: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 25),
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              OverflowBar(
-                overflowAlignment: OverflowBarAlignment.start,
-                spacing: 30,
-                children: [
-                  ConstrainedBox(
-                    constraints: BoxConstraints(
-                      maxWidth:
-                          Get.width > 500 ? Get.width * .5 - 25 : Get.width,
-                      // minWidth: Get.width > 600 ? Get.width * .4 : Get.width,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Row(
-                        //   mainAxisAlignment: MainAxisAlignment.start,
-                        //   children: [
-                        // SizedBox(
-                        //   width: kIsWeb ? width * .5 : width,
-                        //   child: Text(
-                        //     "Lets sum-up!",
-                        //     //**** */
-                        //     style: TextStyle(
-                        //         color: AppColors.orange,
-                        //         fontWeight: FontWeight.bold,
-                        //         fontSize: 18),
-                        //   ),
-                        // ),
-                        //   ],
-                        // ),
-                        // Row(
-                        //   mainAxisAlignment: MainAxisAlignment.start,
-                        //   children: [
-                        //     SizedBox(
-                        //       width: kIsWeb ? width * .5 : width,
-                        //       child: Text(
-                        //         "By clicking your requirements from the incubation centre, you will be responded soon about your Idea. Thankyou for your submission",
-                        //         //**** */
-                        //         style: TextStyle(
-                        //             color: AppColors.orange,
-                        //             fontWeight: FontWeight.bold,
-                        //             fontSize: 18),
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
+    return MaterialApp(
+      home: Scaffold(
+          body: SafeArea(
+        child: ListView(
+          padding: EdgeInsets.symmetric(horizontal: 25),
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                OverflowBar(
+                  overflowAlignment: OverflowBarAlignment.start,
+                  spacing: 30,
+                  children: [
+                    ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxWidth:
+                            Get.width > 500 ? Get.width * .5 - 25 : Get.width,
+                        // minWidth: Get.width > 600 ? Get.width * .4 : Get.width,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.start,
+                          //   children: [
+                          // SizedBox(
+                          //   width: kIsWeb ? width * .5 : width,
+                          //   child: Text(
+                          //     "Lets sum-up!",
+                          //     //**** */
+                          //     style: TextStyle(
+                          //         color: AppColors.orange,
+                          //         fontWeight: FontWeight.bold,
+                          //         fontSize: 18),
+                          //   ),
+                          // ),
+                          //   ],
+                          // ),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.start,
+                          //   children: [
+                          //     SizedBox(
+                          //       width: kIsWeb ? width * .5 : width,
+                          //       child: Text(
+                          //         "By clicking your requirements from the incubation centre, you will be responded soon about your Idea. Thankyou for your submission",
+                          //         //**** */
+                          //         style: TextStyle(
+                          //             color: AppColors.orange,
+                          //             fontWeight: FontWeight.bold,
+                          //             fontSize: 18),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
 
-                        SizedBox(height: 30),
-                        Text(
-                          "I am Looking for",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                              color: AppColors.teal),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          children: [
-                            Container(
-                              //width: kIsWeb ? width * .4 : width * .8,
-                              child: Expanded(
-                                child: Text(
-                                  "Expert Advice on My Idea/Concept Product/ Service",
-                                  style: TextStyle(
-                                      color: AppColors.teal,
-                                      fontWeight: FontWeight.bold),
+                          SizedBox(height: 30),
+                          Text(
+                            "I am Looking for",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                                color: AppColors.teal),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              Container(
+                                //width: kIsWeb ? width * .4 : width * .8,
+                                child: Expanded(
+                                  child: Text(
+                                    "Expert Advice on My Idea/Concept Product/ Service",
+                                    style: TextStyle(
+                                        color: AppColors.teal,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ),
                               ),
-                            ),
-                            SizedBox(
-                              // width: kIsWeb ? width * .2 : width * .2,
-                              child: Theme(
-                                data: ThemeData(
-                                    unselectedWidgetColor: AppColors.teal),
-                                child: Checkbox(
-                                  side: BorderSide(
-                                      color: AppColors.teal, width: 1),
-                                  value: isExpertAdvice,
-                                  activeColor: AppColors.teal,
-                                  onChanged: (val) {
-                                    setState(() {
-                                      isExpertAdvice = val!;
-                                    });
-                                  },
+                              SizedBox(
+                                // width: kIsWeb ? width * .2 : width * .2,
+                                child: Theme(
+                                  data: ThemeData(
+                                      unselectedWidgetColor: AppColors.teal),
+                                  child: Checkbox(
+                                    side: BorderSide(
+                                        color: AppColors.teal, width: 1),
+                                    value: isExpertAdvice,
+                                    activeColor: AppColors.teal,
+                                    onChanged: (val) {
+                                      setState(() {
+                                        isExpertAdvice = val!;
+                                      });
+                                    },
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Container(
+                                // width: kIsWeb ? width * .4 : width * .8,
+                                child: Expanded(
+                                  child: Text(
+                                    "Space and infrastructure to develop the service/product",
+                                    style: TextStyle(
+                                        color: AppColors.teal,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ),
                               ),
-                            )
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Container(
-                              // width: kIsWeb ? width * .4 : width * .8,
-                              child: Expanded(
-                                child: Text(
-                                  "Space and infrastructure to develop the service/product",
-                                  style: TextStyle(
-                                      color: AppColors.teal,
-                                      fontWeight: FontWeight.bold),
+                              SizedBox(
+                                // width: kIsWeb ? width * .2 : width * .2,
+                                child: Theme(
+                                  data: ThemeData(
+                                      unselectedWidgetColor: AppColors.teal),
+                                  child: Checkbox(
+                                    side: BorderSide(
+                                        color: AppColors.teal, width: 1),
+                                    value: isSpace,
+                                    activeColor: AppColors.teal,
+                                    onChanged: (val) {
+                                      setState(() {
+                                        isSpace = val!;
+                                      });
+                                    },
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Container(
+                                //width: kIsWeb ? width * .4 : width * .8,
+                                child: Expanded(
+                                  child: Text(
+                                    "Funding to launch the already developed/product service",
+                                    style: TextStyle(
+                                        color: AppColors.teal,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ),
                               ),
-                            ),
-                            SizedBox(
-                              // width: kIsWeb ? width * .2 : width * .2,
-                              child: Theme(
-                                data: ThemeData(
-                                    unselectedWidgetColor: AppColors.teal),
-                                child: Checkbox(
-                                  side: BorderSide(
-                                      color: AppColors.teal, width: 1),
-                                  value: isSpace,
-                                  activeColor: AppColors.teal,
-                                  onChanged: (val) {
-                                    setState(() {
-                                      isSpace = val!;
-                                    });
-                                  },
+                              SizedBox(
+                                //  width: kIsWeb ? width * .2 : width * .2,
+                                child: Theme(
+                                  data: ThemeData(
+                                      unselectedWidgetColor: AppColors.teal),
+                                  child: Checkbox(
+                                    side: BorderSide(
+                                        color: AppColors.teal, width: 1),
+                                    value: isFunding,
+                                    activeColor: AppColors.teal,
+                                    onChanged: (val) {
+                                      setState(() {
+                                        isFunding = val!;
+                                      });
+                                    },
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Container(
+                                // width: kIsWeb ? width * .4 : width * .8,
+                                child: Expanded(
+                                  child: Text(
+                                    "Form a company and other legal formalities",
+                                    style: TextStyle(
+                                        color: AppColors.teal,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ),
                               ),
-                            )
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Container(
-                              //width: kIsWeb ? width * .4 : width * .8,
-                              child: Expanded(
-                                child: Text(
-                                  "Funding to launch the already developed/product service",
-                                  style: TextStyle(
-                                      color: AppColors.teal,
-                                      fontWeight: FontWeight.bold),
+                              SizedBox(
+                                //  width: kIsWeb ? width * .2 : width * .2,
+                                child: Theme(
+                                  data: ThemeData(
+                                      unselectedWidgetColor: AppColors.teal),
+                                  child: Checkbox(
+                                    side: BorderSide(
+                                        color: AppColors.teal, width: 1),
+                                    value: isFormCompany,
+                                    activeColor: AppColors.teal,
+                                    onChanged: (val) {
+                                      setState(() {
+                                        isFormCompany = val!;
+                                      });
+                                    },
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Container(
+                                // width: kIsWeb ? width * .4 : width * .8,
+                                child: Expanded(
+                                  child: Text(
+                                    "Grow my team",
+                                    style: TextStyle(
+                                        color: AppColors.teal,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ),
                               ),
-                            ),
-                            SizedBox(
-                              //  width: kIsWeb ? width * .2 : width * .2,
-                              child: Theme(
-                                data: ThemeData(
-                                    unselectedWidgetColor: AppColors.teal),
-                                child: Checkbox(
-                                  side: BorderSide(
-                                      color: AppColors.teal, width: 1),
-                                  value: isFunding,
-                                  activeColor: AppColors.teal,
-                                  onChanged: (val) {
-                                    setState(() {
-                                      isFunding = val!;
-                                    });
-                                  },
+                              SizedBox(
+                                // width: kIsWeb ? width * .2 : width * .2,
+                                child: Theme(
+                                  data: ThemeData(
+                                      unselectedWidgetColor: AppColors.teal),
+                                  child: Checkbox(
+                                    side: BorderSide(
+                                        color: AppColors.teal, width: 1),
+                                    value: isGrow,
+                                    activeColor: AppColors.teal,
+                                    onChanged: (val) {
+                                      setState(() {
+                                        isGrow = val!;
+                                      });
+                                    },
+                                  ),
                                 ),
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          // Padding(
+                          //   padding: const EdgeInsets.all(8.0),
+                          //   child: Text(
+                          //     AppLocalizations.of(context)!.idea_desk_is_technology_based,
+                          //     style: TextStyle(
+                          //       fontWeight: FontWeight.bold,
+                          //       color: Colors.black26,
+                          //     ),
+                          //   ),
+                          // ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Row(
+                            children: [
+                              OutLinedButtonWidget(
+                                  text: "choose file",
+                                  onTap: () {
+                                    if (kIsWeb) {
+                                      FilePickerService.pickFileWeb(
+                                              isMultiple: true)
+                                          .then((value) {
+                                        if (value != null) {
+                                          setState(() {
+                                            filesByteList.addAll(value);
+                                          });
+                                        }
+                                      });
+                                    }
+                                    //else {
+                                    //   FilePickerService.pickFile().then((value) {
+                                    //     if (value != null) {
+                                    //       setState(() {
+                                    //         filesList.addAll(value);
+                                    //       });
+                                    //     }
+                                    //   });
+                                    // }
+                                    //  await FilePicker.platform.pickFiles().then((result) {
+                                    //   if (result != null) {
+                                    //     filesList.add(File(result.files.single.path));
+                                    //     setState(() {});
+                                    //   } else {
+                                    //     // User canceled the picker
+                                    //   }
+                                    //   return result;
+                                    // });
+                                  }),
+                              SizedBox(
+                                width: 20,
                               ),
-                            )
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Container(
-                              // width: kIsWeb ? width * .4 : width * .8,
-                              child: Expanded(
-                                child: Text(
-                                  "Form a company and other legal formalities",
-                                  style: TextStyle(
-                                      color: AppColors.teal,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              //  width: kIsWeb ? width * .2 : width * .2,
-                              child: Theme(
-                                data: ThemeData(
-                                    unselectedWidgetColor: AppColors.teal),
-                                child: Checkbox(
-                                  side: BorderSide(
-                                      color: AppColors.teal, width: 1),
-                                  value: isFormCompany,
-                                  activeColor: AppColors.teal,
-                                  onChanged: (val) {
-                                    setState(() {
-                                      isFormCompany = val!;
-                                    });
-                                  },
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Container(
-                              // width: kIsWeb ? width * .4 : width * .8,
-                              child: Expanded(
-                                child: Text(
-                                  "Grow my team",
-                                  style: TextStyle(
-                                      color: AppColors.teal,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              // width: kIsWeb ? width * .2 : width * .2,
-                              child: Theme(
-                                data: ThemeData(
-                                    unselectedWidgetColor: AppColors.teal),
-                                child: Checkbox(
-                                  side: BorderSide(
-                                      color: AppColors.teal, width: 1),
-                                  value: isGrow,
-                                  activeColor: AppColors.teal,
-                                  onChanged: (val) {
-                                    setState(() {
-                                      isGrow = val!;
-                                    });
-                                  },
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        // Padding(
-                        //   padding: const EdgeInsets.all(8.0),
-                        //   child: Text(
-                        //     AppLocalizations.of(context)!.idea_desk_is_technology_based,
-                        //     style: TextStyle(
-                        //       fontWeight: FontWeight.bold,
-                        //       color: Colors.black26,
-                        //     ),
-                        //   ),
-                        // ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            OutLinedButtonWidget(
-                                text: "choose file",
-                                onTap: () {
-                                  if (kIsWeb) {
-                                    FilePickerService.pickFileWeb(
-                                            isMultiple: true)
-                                        .then((value) {
-                                      if (value != null) {
-                                        setState(() {
-                                          filesByteList.addAll(value);
-                                        });
-                                      }
-                                    });
-                                  }
-                                  //else {
-                                  //   FilePickerService.pickFile().then((value) {
-                                  //     if (value != null) {
-                                  //       setState(() {
-                                  //         filesList.addAll(value);
-                                  //       });
-                                  //     }
-                                  //   });
-                                  // }
-                                  //  await FilePicker.platform.pickFiles().then((result) {
-                                  //   if (result != null) {
-                                  //     filesList.add(File(result.files.single.path));
-                                  //     setState(() {});
-                                  //   } else {
-                                  //     // User canceled the picker
-                                  //   }
-                                  //   return result;
-                                  // });
-                                }),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            // filesList.isEmpty
-                            //     ? SizedBox()
-                            //     : Container(
-                            //         child: Text("${filesList.length} filesList Selected"),
-                            //       ),
-                            // SizedBox(
-                            //   width: 20,
-                            // ),
-                            // if (!filesList.isEmpty)
-                            //   GestureDetector(
-                            //     onTap: () {
-                            //       setState(() {
-                            //         filesList.length = filesList.length - 1;
-                            //       });
-                            //     },
-                            //     child: Icon(
-                            //       Icons.remove_circle,
-                            //       color: AppColors.teal,
-                            //     ),
-                            //   )
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Wrap(
-                          children: [
-                            if (kIsWeb)
-                              ...filesByteList.map((e) => UnconstrainedBox(
+                              // filesList.isEmpty
+                              //     ? SizedBox()
+                              //     : Container(
+                              //         child: Text("${filesList.length} filesList Selected"),
+                              //       ),
+                              // SizedBox(
+                              //   width: 20,
+                              // ),
+                              // if (!filesList.isEmpty)
+                              //   GestureDetector(
+                              //     onTap: () {
+                              //       setState(() {
+                              //         filesList.length = filesList.length - 1;
+                              //       });
+                              //     },
+                              //     child: Icon(
+                              //       Icons.remove_circle,
+                              //       color: AppColors.teal,
+                              //     ),
+                              //   )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Wrap(
+                            children: [
+                              if (kIsWeb)
+                                ...filesByteList.map((e) => UnconstrainedBox(
+                                      child: Container(
+                                        width: 150,
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: AppColors.teal),
+                                            borderRadius:
+                                                BorderRadius.circular(5)),
+                                        margin: EdgeInsets.all(5),
+                                        padding: EdgeInsets.all(5),
+                                        child: Row(
+                                          children: [
+                                            Expanded(
+                                              child: Text(
+                                                e["fileName"] ?? "temp",
+                                                overflow: TextOverflow.ellipsis,
+                                                style: TextStyle(
+                                                    color: AppColors.teal),
+                                              ),
+                                            ),
+                                            GestureDetector(
+                                              onTap: () {
+                                                setState(() {
+                                                  filesByteList.remove(e);
+                                                });
+                                              },
+                                              child: Icon(
+                                                Icons.remove_circle,
+                                                color: AppColors.teal,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    )),
+                              ...filesList.map((e) => UnconstrainedBox(
                                     child: Container(
                                       width: 150,
                                       decoration: BoxDecoration(
@@ -563,7 +599,7 @@ class _IdeaThirdScreenState extends State<IdeaThirdScreen> {
                                         children: [
                                           Expanded(
                                             child: Text(
-                                              e["fileName"] ?? "temp",
+                                              e.path.split("/").last,
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
                                                   color: AppColors.teal),
@@ -572,7 +608,7 @@ class _IdeaThirdScreenState extends State<IdeaThirdScreen> {
                                           GestureDetector(
                                             onTap: () {
                                               setState(() {
-                                                filesByteList.remove(e);
+                                                filesList.remove(e);
                                               });
                                             },
                                             child: Icon(
@@ -583,375 +619,342 @@ class _IdeaThirdScreenState extends State<IdeaThirdScreen> {
                                         ],
                                       ),
                                     ),
-                                  )),
-                            ...filesList.map((e) => UnconstrainedBox(
-                                  child: Container(
-                                    width: 150,
-                                    decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: AppColors.teal),
-                                        borderRadius: BorderRadius.circular(5)),
-                                    margin: EdgeInsets.all(5),
-                                    padding: EdgeInsets.all(5),
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            e.path.split("/").last,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                                color: AppColors.teal),
-                                          ),
-                                        ),
-                                        GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              filesList.remove(e);
-                                            });
-                                          },
-                                          child: Icon(
-                                            Icons.remove_circle,
-                                            color: AppColors.teal,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ))
-                          ],
-                        ),
+                                  ))
+                            ],
+                          ),
 
-                        SizedBox(
-                          height: 50,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            OutLinedButtonWidget(
-                              text: "Back",
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
-                            ),
-                            OutLinedButtonWidget(
-                              text: "Next",
-                              onTap: () {
-                                submitIdea3().then((value) =>
-                                    Get.to(() => IdeaFourthScreen()));
-                              },
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 30,
-                        )
-                      ],
+                          SizedBox(
+                            height: 50,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              OutLinedButtonWidget(
+                                text: "Back",
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                              OutLinedButtonWidget(
+                                text: "Next",
+                                onTap: () {
+                                  submitIdea3().then((value) =>
+                                      Get.to(() => IdeaFourthScreen()));
+                                },
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 30,
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                  ConstrainedBox(
-                    constraints: BoxConstraints(
-                      maxWidth: Get.width > 500 ? Get.width * .4 : Get.width,
-                      //minWidth: Get.width > 600 ? Get.width * .4 : Get.width,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          // width: kIsWeb ? width * .3 : width,
-                          child: Expanded(
-                            child: Text(
-                              "Service:",
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                    ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxWidth: Get.width > 500 ? Get.width * .4 : Get.width,
+                        //minWidth: Get.width > 600 ? Get.width * .4 : Get.width,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            // width: kIsWeb ? width * .3 : width,
+                            child: Expanded(
+                              child: Text(
+                                "Service:",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                "- Incubator Connection",
-                                style: TextStyle(
-                                    fontSize: 16, color: Colors.black),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                "- Documentation",
-                                style: TextStyle(
-                                    fontSize: 16, color: Colors.black),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                "- Designing MVP (as per customer’s imaginations)",
-                                style: TextStyle(
-                                    fontSize: 16, color: Colors.black),
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        Row(children: [
-                          Expanded(
-                            child: Text(
-                              "- Comprehensive business planning",
-                              style:
-                                  TextStyle(fontSize: 16, color: Colors.black),
-                            ),
+                          SizedBox(
+                            height: 20,
                           ),
-                        ]),
-                        Row(children: [
-                          Expanded(
-                            child: Text(
-                              "- Developing robust business framework",
-                              style:
-                                  TextStyle(fontSize: 16, color: Colors.black),
-                            ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  "- Incubator Connection",
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.black),
+                                ),
+                              ),
+                            ],
                           ),
-                        ]),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  "- Documentation",
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.black),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  "- Designing MVP (as per customer’s imaginations)",
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.black),
+                                ),
+                              ),
+                            ],
+                          ),
 
-                        // Expanded(
-                        //   child: Text(
-                        //     "Developing robust business framework",
-                        //     style: TextStyle(fontSize: 16, color: Colors.black),
-                        //   ),
-                        // ),
+                          Row(children: [
+                            Expanded(
+                              child: Text(
+                                "- Comprehensive business planning",
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.black),
+                              ),
+                            ),
+                          ]),
+                          Row(children: [
+                            Expanded(
+                              child: Text(
+                                "- Developing robust business framework",
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.black),
+                              ),
+                            ),
+                          ]),
 
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                "- Team development (passionate and target oriented)",
-                                style: TextStyle(
-                                    fontSize: 16, color: Colors.black),
+                          // Expanded(
+                          //   child: Text(
+                          //     "Developing robust business framework",
+                          //     style: TextStyle(fontSize: 16, color: Colors.black),
+                          //   ),
+                          // ),
+
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  "- Team development (passionate and target oriented)",
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.black),
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                "- Training ",
-                                style: TextStyle(
-                                    fontSize: 16, color: Colors.black),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  "- Training ",
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.black),
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                "- Performance metrics (Planning, executing and monitoring every step meticulously ",
-                                style: TextStyle(
-                                    fontSize: 16, color: Colors.black),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  "- Performance metrics (Planning, executing and monitoring every step meticulously ",
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.black),
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                        // Row(
-                        //   children: [
-                        //     Icon(Icons.circle, size: 5),
-                        //     SizedBox(width: 5),
-                        //     SizedBox(
-                        //       // width: kIsWeb ? width * .3 : width,
-                        //       child: Expanded(
-                        //         child: Text(
-                        //           "Incubator Connection",
-                        //           style: TextStyle(
-                        //               fontSize: 16, color: Colors.black),
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
-                        // Row(
-                        //   children: [
-                        //     Icon(Icons.circle, size: 5),
-                        //     SizedBox(width: 5),
-                        //     SizedBox(
-                        //       //width: kIsWeb ? width * .3 : width,
-                        //       child: Expanded(
-                        //         child: Text(
-                        //           "Documentation",
-                        //           style: TextStyle(
-                        //               fontSize: 16, color: Colors.black),
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
-                        // OverflowBar(
-                        //     overflowAlignment: OverflowBarAlignment.start,
-                        //     spacing: 10,
-                        //     children: [
-                        //       ConstrainedBox(
-                        //         constraints: BoxConstraints(
-                        //           maxWidth: Get.width > 500
-                        //               ? Get.width * .5 - 25
-                        //               : Get.width,
-                        //           // minWidth: Get.width > 600 ? Get.width * .4 : Get.width,
-                        //         ),
-                        //         child: Row(
-                        //           children: [
-                        //             Icon(Icons.circle, size: 5),
-                        //             //SizedBox(width: 5),
-                        //             SizedBox(
-                        //               // width: kIsWeb ? width * .3 : width,
-                        //               child: Expanded(
-                        //                 child: Text(
-                        //                   "- Designing MVP (as per customer’s imaginations)",
-                        //                   style: TextStyle(
-                        //                       fontSize: 16,
-                        //                       color: Colors.black),
-                        //                 ),
-                        //               ),
-                        //             ),
-                        //           ],
-                        //         ),
-                        //       ),
-                        //     ]),
-                        // Row(
-                        //   children: [
-                        //     Icon(Icons.circle, size: 5),
-                        //     SizedBox(width: 5),
-                        //     SizedBox(
-                        //       // width: kIsWeb ? width * .3 : width,
-                        //       child: Expanded(
-                        //         child: Text(
-                        //           "Designing MVP (as per customer’s imaginations)",
-                        //           style: TextStyle(
-                        //               fontSize: 16, color: Colors.black),
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
-                        // Row(
-                        //   children: [
-                        //     Icon(Icons.circle, size: 5),
-                        //     SizedBox(width: 5),
-                        //     SizedBox(
-                        //       //width: kIsWeb ? width * .3 : width,
-                        //       child: Expanded(
-                        //         child: Text(
-                        //           "Comprehensive business planning",
-                        //           style: TextStyle(
-                        //               fontSize: 16, color: Colors.black),
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
-                        // Row(
-                        //   children: [
-                        //     Icon(Icons.circle, size: 5),
-                        //     SizedBox(width: 5),
-                        //     SizedBox(
-                        //       //width: kIsWeb ? width * .3 : width,
-                        //       child: Expanded(
-                        //         child: Text(
-                        //           "Developing robust business framework",
-                        //           style: TextStyle(
-                        //               fontSize: 16, color: Colors.black),
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
-                        // Row(
-                        //   children: [
-                        //     Icon(Icons.circle, size: 5),
-                        //     SizedBox(width: 5),
-                        //     SizedBox(
-                        //       width: kIsWeb ? width * .3 : width,
-                        //       child: Text(
-                        //         "Team development (passionate and target oriented)",
-                        //         style: TextStyle(
-                        //             fontSize: 16, color: Colors.black),
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
-                        // Row(
-                        //   children: [
-                        //     Icon(Icons.circle, size: 5),
-                        //     SizedBox(width: 5),
-                        //     SizedBox(
-                        //       width: kIsWeb ? width * .3 : width,
-                        //       child: Text(
-                        //         "Training ",
-                        //         style: TextStyle(
-                        //             fontSize: 16, color: Colors.black),
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
-                        // Row(
-                        //   children: [
-                        //     Icon(Icons.circle, size: 5),
-                        //     SizedBox(width: 5),
-                        //     SizedBox(
-                        //       width: kIsWeb ? width * .3 : width,
-                        //       child: Text(
-                        //         "Performance metrics (Planning, executing and monitoring every step meticulously)",
-                        //         style: TextStyle(
-                        //             fontSize: 16, color: Colors.black),
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
-                      ],
+                            ],
+                          ),
+                          // Row(
+                          //   children: [
+                          //     Icon(Icons.circle, size: 5),
+                          //     SizedBox(width: 5),
+                          //     SizedBox(
+                          //       // width: kIsWeb ? width * .3 : width,
+                          //       child: Expanded(
+                          //         child: Text(
+                          //           "Incubator Connection",
+                          //           style: TextStyle(
+                          //               fontSize: 16, color: Colors.black),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
+                          // Row(
+                          //   children: [
+                          //     Icon(Icons.circle, size: 5),
+                          //     SizedBox(width: 5),
+                          //     SizedBox(
+                          //       //width: kIsWeb ? width * .3 : width,
+                          //       child: Expanded(
+                          //         child: Text(
+                          //           "Documentation",
+                          //           style: TextStyle(
+                          //               fontSize: 16, color: Colors.black),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
+                          // OverflowBar(
+                          //     overflowAlignment: OverflowBarAlignment.start,
+                          //     spacing: 10,
+                          //     children: [
+                          //       ConstrainedBox(
+                          //         constraints: BoxConstraints(
+                          //           maxWidth: Get.width > 500
+                          //               ? Get.width * .5 - 25
+                          //               : Get.width,
+                          //           // minWidth: Get.width > 600 ? Get.width * .4 : Get.width,
+                          //         ),
+                          //         child: Row(
+                          //           children: [
+                          //             Icon(Icons.circle, size: 5),
+                          //             //SizedBox(width: 5),
+                          //             SizedBox(
+                          //               // width: kIsWeb ? width * .3 : width,
+                          //               child: Expanded(
+                          //                 child: Text(
+                          //                   "- Designing MVP (as per customer’s imaginations)",
+                          //                   style: TextStyle(
+                          //                       fontSize: 16,
+                          //                       color: Colors.black),
+                          //                 ),
+                          //               ),
+                          //             ),
+                          //           ],
+                          //         ),
+                          //       ),
+                          //     ]),
+                          // Row(
+                          //   children: [
+                          //     Icon(Icons.circle, size: 5),
+                          //     SizedBox(width: 5),
+                          //     SizedBox(
+                          //       // width: kIsWeb ? width * .3 : width,
+                          //       child: Expanded(
+                          //         child: Text(
+                          //           "Designing MVP (as per customer’s imaginations)",
+                          //           style: TextStyle(
+                          //               fontSize: 16, color: Colors.black),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
+                          // Row(
+                          //   children: [
+                          //     Icon(Icons.circle, size: 5),
+                          //     SizedBox(width: 5),
+                          //     SizedBox(
+                          //       //width: kIsWeb ? width * .3 : width,
+                          //       child: Expanded(
+                          //         child: Text(
+                          //           "Comprehensive business planning",
+                          //           style: TextStyle(
+                          //               fontSize: 16, color: Colors.black),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
+                          // Row(
+                          //   children: [
+                          //     Icon(Icons.circle, size: 5),
+                          //     SizedBox(width: 5),
+                          //     SizedBox(
+                          //       //width: kIsWeb ? width * .3 : width,
+                          //       child: Expanded(
+                          //         child: Text(
+                          //           "Developing robust business framework",
+                          //           style: TextStyle(
+                          //               fontSize: 16, color: Colors.black),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
+                          // Row(
+                          //   children: [
+                          //     Icon(Icons.circle, size: 5),
+                          //     SizedBox(width: 5),
+                          //     SizedBox(
+                          //       width: kIsWeb ? width * .3 : width,
+                          //       child: Text(
+                          //         "Team development (passionate and target oriented)",
+                          //         style: TextStyle(
+                          //             fontSize: 16, color: Colors.black),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
+                          // Row(
+                          //   children: [
+                          //     Icon(Icons.circle, size: 5),
+                          //     SizedBox(width: 5),
+                          //     SizedBox(
+                          //       width: kIsWeb ? width * .3 : width,
+                          //       child: Text(
+                          //         "Training ",
+                          //         style: TextStyle(
+                          //             fontSize: 16, color: Colors.black),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
+                          // Row(
+                          //   children: [
+                          //     Icon(Icons.circle, size: 5),
+                          //     SizedBox(width: 5),
+                          //     SizedBox(
+                          //       width: kIsWeb ? width * .3 : width,
+                          //       child: Text(
+                          //         "Performance metrics (Planning, executing and monitoring every step meticulously)",
+                          //         style: TextStyle(
+                          //             fontSize: 16, color: Colors.black),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
+                        ],
+                      ),
                     ),
-                  ),
 
-                  //  Column(
-                  //   crossAxisAlignment: CrossAxisAlignment.start,
-                  //   children: [
-                  //     SizedBox(
-                  //       width: kIsWeb ? width * .28 : width,
-                  //       child: Text(
-                  //         "ABOUT US:",
-                  //         style: TextStyle(
-                  //             fontSize: 16,
-                  //             fontWeight: FontWeight.bold,
-                  //             color: Colors.black),
-                  //       ),
-                  //     ),
-                  //     SizedBox(
-                  //       height: 20,
-                  //     ),
-                  //     SizedBox(
-                  //       width: kIsWeb ? width * .3 : width,
-                  //       child: Text(
-                  //         "Welcome to Rafts and Rivers LLC, a leading consultancy firm specializing in providing tailored solutions to help Start-ups and Incubators achieve their goals and maximize their potential. With our extensive expertise and deep industry knowledge, we connect our clients with the resources and support necessary to thrive in today's competitive business landscape.",
-                  //         style: TextStyle(fontSize: 16, color: Colors.black),
-                  //       ),
-                  //     )
-                  //   ],
-                  // ),
-                ],
-              )
-            ],
-          )
-        ],
-      ),
-    ));
+                    //  Column(
+                    //   crossAxisAlignment: CrossAxisAlignment.start,
+                    //   children: [
+                    //     SizedBox(
+                    //       width: kIsWeb ? width * .28 : width,
+                    //       child: Text(
+                    //         "ABOUT US:",
+                    //         style: TextStyle(
+                    //             fontSize: 16,
+                    //             fontWeight: FontWeight.bold,
+                    //             color: Colors.black),
+                    //       ),
+                    //     ),
+                    //     SizedBox(
+                    //       height: 20,
+                    //     ),
+                    //     SizedBox(
+                    //       width: kIsWeb ? width * .3 : width,
+                    //       child: Text(
+                    //         "Welcome to Rafts and Rivers LLC, a leading consultancy firm specializing in providing tailored solutions to help Start-ups and Incubators achieve their goals and maximize their potential. With our extensive expertise and deep industry knowledge, we connect our clients with the resources and support necessary to thrive in today's competitive business landscape.",
+                    //         style: TextStyle(fontSize: 16, color: Colors.black),
+                    //       ),
+                    //     )
+                    //   ],
+                    // ),
+                  ],
+                )
+              ],
+            )
+          ],
+        ),
+      )),
+    );
   }
 }
