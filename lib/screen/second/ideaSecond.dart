@@ -599,6 +599,7 @@ class _IdeaSecondScreenState extends State<IdeaSecondScreen> {
                         ),
                         label("Location"),
                         Container(
+                          height: 40,
                           // width: kIsWeb ? width * .5 : width * .99,
                           decoration: BoxDecoration(
                               border: getUnderlineBorder(AppColors.teal)),
@@ -664,6 +665,7 @@ class _IdeaSecondScreenState extends State<IdeaSecondScreen> {
                         ),
                         label("Gender"),
                         Container(
+                          height: 40,
                           //width: kIsWeb ? width * .5 : width * .99,
                           decoration: BoxDecoration(
                               border: getUnderlineBorder(AppColors.teal)),
@@ -729,6 +731,7 @@ class _IdeaSecondScreenState extends State<IdeaSecondScreen> {
                         label("Education"),
 
                         Container(
+                          height: 40,
                           //  width: kIsWeb ? width * .5 : width * .99,
                           decoration: BoxDecoration(
                               border: getUnderlineBorder(AppColors.teal)),

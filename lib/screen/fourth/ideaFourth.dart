@@ -179,6 +179,7 @@ class _IdeaFourthScreenState extends State<IdeaFourthScreen> {
       ));
       setState(() {});
       coFounder.add(Container(
+          height: 35,
           //  width: kIsWeb ? width * .4 : width * .99,
           decoration: BoxDecoration(
               border: Border(
@@ -271,13 +272,6 @@ class _IdeaFourthScreenState extends State<IdeaFourthScreen> {
               showToastMessage("Something went wrong")
             }
         });
-    // log("mobile number  " + businessIdea["myMobile"].toString());
-    // log("my name  " + businessIdea["myName"].toString());
-    // log("year of corporation  " + businessIdea["yearOfCorporation"].toString());
-    // log("my email  " + businessIdea["myEmail"].toString());
-    // log("my Company name  " + businessIdea["companyCtrl"].toString());
-    // ideaController.createBusinessIdea(businessIdeaDetail,
-    //     files: filesList, bytesList: filesByteList, marks: calculateMarks());
   }
 
   @override
@@ -308,6 +302,7 @@ class _IdeaFourthScreenState extends State<IdeaFourthScreen> {
                         ),
                         label("My Name"),
                         Container(
+                            height: 30,
                             //width: kIsWeb ? width * .4 : width * .99,
                             decoration: BoxDecoration(
                                 border: Border(
@@ -322,7 +317,7 @@ class _IdeaFourthScreenState extends State<IdeaFourthScreen> {
                                 controller: nameCtrl,
                                 decoration: InputDecoration(
                                   hintText: "James Gosling",
-                                  //border: InputBorder.none,
+                                  // border: InputBorder.none,
                                   hintMaxLines: 3,
                                   enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(color: Colors.teal),
@@ -331,6 +326,7 @@ class _IdeaFourthScreenState extends State<IdeaFourthScreen> {
                         SizedBox(height: 20),
                         label("My Email"),
                         Container(
+                            height: 30,
                             //width: kIsWeb ? width * .4 : width * .99,
                             decoration: BoxDecoration(
                                 border: Border(
@@ -354,6 +350,7 @@ class _IdeaFourthScreenState extends State<IdeaFourthScreen> {
                         SizedBox(height: 20),
                         label("My Mobile Number"),
                         Container(
+                            height: 30,
                             // width: kIsWeb ? width * .4 : width * .99,
                             decoration: BoxDecoration(
                                 border: Border(
@@ -377,6 +374,7 @@ class _IdeaFourthScreenState extends State<IdeaFourthScreen> {
                         SizedBox(height: 20),
                         label("My Designation"),
                         Container(
+                            height: 30,
                             //width: kIsWeb ? width * .4 : width * .99,
                             decoration: BoxDecoration(
                                 border: Border(
@@ -441,6 +439,7 @@ class _IdeaFourthScreenState extends State<IdeaFourthScreen> {
                                 onTap: () {
                                   coFounderCTRL.add(TextEditingController());
                                   coFounder.add(Container(
+                                      height: 35,
                                       // width: kIsWeb
                                       //     ? width * .4
                                       //     : width * .99,
@@ -498,24 +497,6 @@ class _IdeaFourthScreenState extends State<IdeaFourthScreen> {
                                       }
                                     });
                                   }
-                                  //else {
-                                  //   FilePickerService.pickFile().then((value) {
-                                  //     if (value != null) {
-                                  //       setState(() {
-                                  //         filesList.addAll(value);
-                                  //       });
-                                  //     }
-                                  //   });
-                                  // }
-                                  //  await FilePicker.platform.pickFiles().then((result) {
-                                  //   if (result != null) {
-                                  //     filesList.add(File(result.files.single.path));
-                                  //     setState(() {});
-                                  //   } else {
-                                  //     // User canceled the picker
-                                  //   }
-                                  //   return result;
-                                  // });
                                 }),
                             SizedBox(
                               width: 20,
@@ -577,24 +558,6 @@ class _IdeaFourthScreenState extends State<IdeaFourthScreen> {
                                       }
                                     });
                                   }
-                                  //else {
-                                  //   FilePickerService.pickFile().then((value) {
-                                  //     if (value != null) {
-                                  //       setState(() {
-                                  //         filesList.addAll(value);
-                                  //       });
-                                  //     }
-                                  //   });
-                                  // }
-                                  //  await FilePicker.platform.pickFiles().then((result) {
-                                  //   if (result != null) {
-                                  //     filesList.add(File(result.files.single.path));
-                                  //     setState(() {});
-                                  //   } else {
-                                  //     // User canceled the picker
-                                  //   }
-                                  //   return result;
-                                  // });
                                 }),
                             SizedBox(
                               width: 20,
@@ -655,15 +618,6 @@ class _IdeaFourthScreenState extends State<IdeaFourthScreen> {
                                       }
                                     });
                                   }
-                                  //else {
-                                  //   FilePickerService.pickFile().then((value) {
-                                  //     if (value != null) {
-                                  //       setState(() {
-                                  //         filesList.addAll(value);
-                                  //       });
-                                  //     }
-                                  //   });
-                                  // }
                                 }),
                             SizedBox(
                               width: 20,
