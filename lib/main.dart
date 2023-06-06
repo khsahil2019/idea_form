@@ -47,8 +47,8 @@ class MyApp extends StatelessWidget {
         ),
         initialBinding: AllBinding(),
         // home: CreateBusinessIdeaScreen());
-        home: IdeaFourthScreen());
-    // home: IdeaFirstScreen());
+        // home: IdeaFourthScreen());
+        home: IdeaFirstScreen());
     // home: IdeaSecondScreen());
     //home: IdeaThirdScreen());
   }
