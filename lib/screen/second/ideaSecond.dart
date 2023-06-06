@@ -8,6 +8,7 @@ import 'dart:developer';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 import '../../constant/ui_constant.dart';
+import '../../controller/ideaController.dart';
 import '../../widget/button.dart';
 import '../../widget/textField.dart';
 import '../../widget/toast.dart';
@@ -223,9 +224,9 @@ class _IdeaSecondScreenState extends State<IdeaSecondScreen> {
       "education": education,
       "teamSize": teamSizeCTRL.text,
     };
-    // ideaController.myMap.addAll(businessIdea);
+    ideaController.ideaData.addAll(businessIdea2);
 
-    print(businessIdea2.toString());
+    print(ideaController.ideaData.toString());
   }
 
   @override

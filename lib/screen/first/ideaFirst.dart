@@ -8,6 +8,7 @@ import 'dart:developer';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 import '../../constant/ui_constant.dart';
+import '../../controller/ideaController.dart';
 import '../../widget/button.dart';
 import '../../widget/textField.dart';
 import '../../widget/toast.dart';
@@ -226,10 +227,10 @@ class _IdeaFirstScreenState extends State<IdeaFirstScreen> {
       "legalStatus": legalStatus,
       "yearOfCorporation": yearOfCorporationCTRL.text,
     };
-    // ideaController.myMap.addAll(businessIdea);
-    businessIdea1Map.addAll(businessIdea1);
-    log(businessIdea1.toString());
-    //print(businessIdea1.toString());
+    ideaController.ideaData.addAll(businessIdea1);
+    // businessIdea1.addAll(businessIdea1);
+    // log(businessIdea1.toString());
+    print(businessIdea1.toString());
   }
 
   @override

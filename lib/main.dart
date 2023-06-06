@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:idea_form/controller/ideaController.dart';
 import 'package:idea_form/screen/first/ideaFirst.dart';
 import 'package:idea_form/screen/fourth/ideaFourth.dart';
 import 'package:idea_form/screen/second/ideaSecond.dart';
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
+        initialBinding: AllBinding(),
         // home: CreateBusinessIdeaScreen());
         home: IdeaFourthScreen());
     // home: IdeaFirstScreen());
