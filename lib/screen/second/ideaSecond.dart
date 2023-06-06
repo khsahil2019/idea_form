@@ -967,18 +967,22 @@ class _IdeaSecondScreenState extends State<IdeaSecondScreen> {
       showToastMessage("Please mention your target age from");
       return false;
     }
-    if (int.parse(fromCtrl.text) < 18) {
-      showToastMessage("Target age must above than 18");
-      return false;
-    }
+    // if (int.parse(fromCtrl.text) < 18) {
+    //   showToastMessage("Target age must above than 18");
+    //   return false;
+    // }
+    // if (fromCtrl.text.isEmpty) {
+    //   showToastMessage("Target age must br filled ");
+    //   return false;
+    // }
     if (toCtrl.text.isEmpty) {
       showToastMessage("Please mention your target age upto");
       return false;
     }
-    if (int.parse(toCtrl.text) > 100) {
-      showToastMessage("Target age cant be more than 100");
-      return false;
-    }
+    // if (int.parse(toCtrl.text) > 100) {
+    //   showToastMessage("Target age cant be more than 100");
+    //   return false;
+    // }
     if (fromIncomeCtrl.text.isEmpty) {
       showToastMessage("Please mention monthly income from");
       return false;

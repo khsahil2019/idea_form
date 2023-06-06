@@ -49,6 +49,7 @@ class FirebaseStorageService {
     String path, {
     List<File>? files,
     List<Map<String, dynamic>>? byteList,
+    // Uint8List? uploadImageBytes,
   }) async {
     try {
       if (kIsWeb) {
@@ -90,6 +91,39 @@ class FirebaseStorageService {
       showToastMessage(e.toString());
       return null;
     }
+  }
+
+  static Future<String?> uploadImage(String path, String fileName,
+      {File? file, Map? byteData}) async {
+    try {
+      if (kIsWeb) {
+        final ref = FirebaseStorage.instance.ref(path).child(fileName);
+        final uploadTask = ref.putData(byteData as Uint8List);
+        final snapshot = await uploadTask.whenComplete(() {
+          log("Image uploaded");
+        });
+        final downloadUrl = await snapshot.ref.getDownloadURL();
+        log(downloadUrl);
+        return downloadUrl;
+      } else {
+        return FirebaseStorage.instance
+            .ref(path)
+            .child(fileName)
+            .putFile(file!)
+            .then((value) => value.ref.getDownloadURL());
+      }
+    } catch (e) {
+      log(" Catch Error: $e");
+      showToastMessage(e.toString());
+      return null;
+    }
+    // try {
+
+    // } catch (e) {
+    //   log(" Catch Error: $e");
+    //   showToastMessage(e.toString());
+    //   return null;
+    // }
   }
 
   // static Future<File?> downloadFile(String url) async {
