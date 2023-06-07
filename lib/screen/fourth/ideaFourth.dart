@@ -106,12 +106,12 @@ class _IdeaFourthScreenState extends State<IdeaFourthScreen> {
   List<TextEditingController> coFounderCTRL = [
     TextEditingController(),
   ];
-  File? uploadImage;
-  File? uploadImage2;
-  File? uploadImage3;
-  Uint8List? uploadImageBytes;
-  Uint8List? uploadImage2Bytes;
-  Uint8List? uploadImage3Bytes;
+  // File? uploadImage;
+  // File? uploadImage2;
+  // File? uploadImage3;
+  Map<String, dynamic>? uploadImageBytes;
+  Map<String, dynamic>? uploadImage2Bytes;
+  Map<String, dynamic>? uploadImage3Bytes;
   @override
   void initState() {
     // TODO: implement initState
@@ -227,7 +227,22 @@ class _IdeaFourthScreenState extends State<IdeaFourthScreen> {
       "companyCtrl": companyCtrl.text
     };
     // ideaController.myMap.addAll(businessIdea);
-
+    if (uploadImageBytes != null) {
+      showLoading("Uploading Files..");
+      List<Map<String, dynamic>> images = [uploadImageBytes!];
+      if (uploadImage2Bytes != null) {
+        images.add(uploadImage2Bytes!);
+      }
+      if (uploadImage3Bytes != null) {
+        images.add(uploadImage3Bytes!);
+      }
+      List? urls = await FirebaseStorageService.uploadMultiFile("businessIdea",
+          byteList: images);
+      if (urls != null) {
+        dismissLoadingWidget();
+        businessIdea4["coFounders"] = urls;
+      }
+    }
     if (companyCertByteList.isNotEmpty) {
       showLoading("Uploading Files..");
       List? urls = await FirebaseStorageService.uploadMultiFile("businessIdea",
@@ -520,23 +535,16 @@ class _IdeaFourthScreenState extends State<IdeaFourthScreen> {
                                                 if (value != null) {
                                                   setState(() {
                                                     // Uni8int8List to File
-                                                    uploadImageBytes =
-                                                        value["byteData"];
-                                                    uploadImage =
-                                                        File.fromRawPath(
-                                                            value["byteData"]);
+                                                    uploadImageBytes = value;
+                                                    // uploadImage =
+                                                    //     File.fromRawPath(
+                                                    //         value["byteData"]);
                                                   });
                                                 }
                                               });
-                                            } else
-                                              ImagePickerService.pickImageUI(
-                                                  (val) {
-                                                setState(() {
-                                                  uploadImage = val;
-                                                });
-                                              }, 20);
+                                            }
                                           },
-                                          child: uploadImage == null
+                                          child: uploadImageBytes == null
                                               ? Container(
                                                   width: 100.0,
                                                   height: 100.0,
@@ -564,29 +572,23 @@ class _IdeaFourthScreenState extends State<IdeaFourthScreen> {
                                                   width: 100.0,
                                                   height: 100.0,
                                                   decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        color: Colors.grey,
-                                                        offset: Offset(3, 5),
-                                                        blurRadius: 5,
-                                                      ),
-                                                    ],
-                                                    color: Colors.black,
-                                                    image: kIsWeb
-                                                        ? DecorationImage(
-                                                            fit: BoxFit.cover,
-                                                            image: MemoryImage(
-                                                                uploadImageBytes!),
-                                                            // image: NetworkImage(
-                                                            //     uploadImage!.path.toString())
-                                                          )
-                                                        : DecorationImage(
-                                                            fit: BoxFit.cover,
-                                                            image: FileImage(
-                                                                uploadImage!),
-                                                          ),
-                                                  ),
+                                                      shape: BoxShape.circle,
+                                                      boxShadow: [
+                                                        BoxShadow(
+                                                          color: Colors.grey,
+                                                          offset: Offset(3, 5),
+                                                          blurRadius: 5,
+                                                        ),
+                                                      ],
+                                                      color: Colors.black,
+                                                      image: DecorationImage(
+                                                        fit: BoxFit.cover,
+                                                        image: MemoryImage(
+                                                            uploadImageBytes![
+                                                                "byteData"]),
+                                                        // image: NetworkImage(
+                                                        //     uploadImage!.path.toString())
+                                                      )),
                                                 ),
                                         ),
                                         SizedBox(
@@ -620,23 +622,13 @@ class _IdeaFourthScreenState extends State<IdeaFourthScreen> {
                                                 if (value != null) {
                                                   setState(() {
                                                     // Uni8int8List to File
-                                                    uploadImage2Bytes =
-                                                        value["byteData"];
-                                                    uploadImage2 =
-                                                        File.fromRawPath(
-                                                            value["byteData"]);
+                                                    uploadImage2Bytes = value;
                                                   });
                                                 }
                                               });
-                                            } else
-                                              ImagePickerService.pickImageUI(
-                                                  (val) {
-                                                setState(() {
-                                                  uploadImage2 = val;
-                                                });
-                                              }, 20);
+                                            }
                                           },
-                                          child: uploadImage2 == null
+                                          child: uploadImage2Bytes == null
                                               ? Container(
                                                   width: 100.0,
                                                   height: 100.0,
@@ -664,29 +656,23 @@ class _IdeaFourthScreenState extends State<IdeaFourthScreen> {
                                                   width: 100.0,
                                                   height: 100.0,
                                                   decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        color: Colors.grey,
-                                                        offset: Offset(3, 5),
-                                                        blurRadius: 5,
-                                                      ),
-                                                    ],
-                                                    color: Colors.black,
-                                                    image: kIsWeb
-                                                        ? DecorationImage(
-                                                            fit: BoxFit.cover,
-                                                            image: MemoryImage(
-                                                                uploadImage2Bytes!),
-                                                            // image: NetworkImage(
-                                                            //     uploadImage!.path.toString())
-                                                          )
-                                                        : DecorationImage(
-                                                            fit: BoxFit.cover,
-                                                            image: FileImage(
-                                                                uploadImage2!),
-                                                          ),
-                                                  ),
+                                                      shape: BoxShape.circle,
+                                                      boxShadow: [
+                                                        BoxShadow(
+                                                          color: Colors.grey,
+                                                          offset: Offset(3, 5),
+                                                          blurRadius: 5,
+                                                        ),
+                                                      ],
+                                                      color: Colors.black,
+                                                      image: DecorationImage(
+                                                        fit: BoxFit.cover,
+                                                        image: MemoryImage(
+                                                            uploadImage2Bytes![
+                                                                "byteData"]),
+                                                        // image: NetworkImage(
+                                                        //     uploadImage!.path.toString())
+                                                      )),
                                                 ),
                                         ),
                                         SizedBox(
@@ -720,23 +706,13 @@ class _IdeaFourthScreenState extends State<IdeaFourthScreen> {
                                                 if (value != null) {
                                                   setState(() {
                                                     // Uni8int8List to File
-                                                    uploadImage3Bytes =
-                                                        value["byteData"];
-                                                    uploadImage3 =
-                                                        File.fromRawPath(
-                                                            value["byteData"]);
+                                                    uploadImage3Bytes = value;
                                                   });
                                                 }
                                               });
-                                            } else
-                                              ImagePickerService.pickImageUI(
-                                                  (val) {
-                                                setState(() {
-                                                  uploadImage3 = val;
-                                                });
-                                              }, 20);
+                                            }
                                           },
-                                          child: uploadImage3 == null
+                                          child: uploadImage3Bytes == null
                                               ? Container(
                                                   width: 100.0,
                                                   height: 100.0,
@@ -764,29 +740,23 @@ class _IdeaFourthScreenState extends State<IdeaFourthScreen> {
                                                   width: 100.0,
                                                   height: 100.0,
                                                   decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    boxShadow: const [
-                                                      BoxShadow(
-                                                        color: Colors.grey,
-                                                        offset: Offset(3, 5),
-                                                        blurRadius: 5,
-                                                      ),
-                                                    ],
-                                                    color: Colors.black,
-                                                    image: kIsWeb
-                                                        ? DecorationImage(
-                                                            fit: BoxFit.cover,
-                                                            image: MemoryImage(
-                                                                uploadImage3Bytes!),
-                                                            // image: NetworkImage(
-                                                            //     uploadImage!.path.toString())
-                                                          )
-                                                        : DecorationImage(
-                                                            fit: BoxFit.cover,
-                                                            image: FileImage(
-                                                                uploadImage3!),
-                                                          ),
-                                                  ),
+                                                      shape: BoxShape.circle,
+                                                      boxShadow: const [
+                                                        BoxShadow(
+                                                          color: Colors.grey,
+                                                          offset: Offset(3, 5),
+                                                          blurRadius: 5,
+                                                        ),
+                                                      ],
+                                                      color: Colors.black,
+                                                      image: DecorationImage(
+                                                        fit: BoxFit.cover,
+                                                        image: MemoryImage(
+                                                            uploadImage3Bytes![
+                                                                "byteData"]),
+                                                        // image: NetworkImage(
+                                                        //     uploadImage!.path.toString())
+                                                      )),
                                                 ),
                                         ),
                                         SizedBox(

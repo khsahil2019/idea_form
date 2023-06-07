@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+        debugShowCheckedModeBanner: false,
         supportedLocales: L10n
             .all, // <-- supported locales https://www.youtube.com/watch?v=aIEegP0cUOQ
         locale: Locale(
