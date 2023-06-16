@@ -19,6 +19,7 @@ import '../../widget/show_loading.dart';
 import '../../widget/textField.dart';
 import '../../widget/toast.dart';
 import '../../widget/widgetfunction.dart';
+import '../first/ideaFirst.dart';
 import '../second/ideaSecond.dart';
 
 class IdeaFourthScreen extends StatefulWidget {
@@ -289,13 +290,12 @@ class _IdeaFourthScreenState extends State<IdeaFourthScreen> {
             {
               dismissLoadingWidget(),
               showToastMessage("Idea Submitted Successfully"),
-              EmailService().sendEmail(
-                  email: emailCtrl.text,
-                  description: ideaController.ideaData.toString()),
-              setState(() {
-                ideaController.ideaData.clear();
-                index = 0;
-              })
+              Get.offAll(IdeaFirstScreen()),
+              // EmailService().sendEmail(
+              //     email: emailCtrl.text,
+              //     description: ideaController.ideaData.toString()),
+
+              ideaController.ideaData.clear()
             }
           else
             {
@@ -1114,14 +1114,12 @@ class _IdeaFourthScreenState extends State<IdeaFourthScreen> {
                           Get.width > 500 ? Get.width * .5 - 25 : Get.width,
                       // minWidth: Get.width > 600 ? Get.width * .4 : Get.width,
                     ),
-                    child: Expanded(
-                      child: Text(
-                          "constitute a binding contract, but rather an expression of interest in",
-                          style: TextStyle(
-                              color: Colors.black,
-                              // fontWeight: FontWeight.bold,
-                              fontSize: 16)),
-                    ),
+                    child: Text(
+                        "constitute a binding contract, but rather an expression of interest in",
+                        style: TextStyle(
+                            color: Colors.black,
+                            // fontWeight: FontWeight.bold,
+                            fontSize: 16)),
                   ),
                   ConstrainedBox(
                     constraints: BoxConstraints(
